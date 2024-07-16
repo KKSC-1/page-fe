@@ -28,6 +28,10 @@
       &times;
     </a>
 		<div class="content">
+      <span>
+        Event Name : 
+        <br>
+      </span>
 	  <input type="text" id="userName" placeholder="Enter name">
     <button id="userButton">
       Add
@@ -35,8 +39,8 @@
     <div id="nameList">
       
     </div>
-		</div>
-	</div>
+</div>
+</div>
 </div>
 </div>
 </body>
