@@ -76,8 +76,6 @@ function makeElement(firstDate) {
     weekly++;
     calendarBody.appendChild(weeklyEl);
   }
-  let clickedDate = document.getElementsByClassName(today.getDate());
-  clickedDate[0].classList.add('active');
 }
 
 function removeCalendar() {
