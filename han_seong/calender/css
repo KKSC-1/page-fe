@@ -1,296 +1,358 @@
-.btn-prev,
-.btn-next {
-	border: 2px solid #cbd1d2;
-	border-radius: 50%;
-	color: #cbd1d2;
-	height: 2em;
-	font-size: .75em;
-	line-height: 2em;
-	margin: -1em;
-	position: absolute;
-	top: 50%;
-	width: 2em;
+/* font.css */
+
+.nanum-gothic-regular {
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
-.btn-prev:hover,
-.btn-next:hover {
-	background: #cbd1d2;
-	color: #f9f9f9;
+.nanum-gothic-bold {
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
-.btn-prev {
-  top:100px;
-	left: 6em;
+.nanum-gothic-extrabold {
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 800;
+  font-style: normal;
 }
 
-.btn-next {
-  top:100px;
-	right: 6em;
+.archivo-black-regular {
+  font-family: "Archivo Black", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.inter-tight {
+  font-family: "Inter Tight", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
+/* reset.css : 기본적으로 태그들에 적용되어 있는 불필요한 css를 reset */
+
+body 
+{
+	margin:0;
+	padding:0;
+	font-family: 'Roboto', sans-serif;
+  background-color:black; /*추가*/
+}
+
+li 
+{
+  list-style:none;
+}
+
+a 
+{
+  text-decoration:none;
+}
+
+table 
+{
+  border-collapse: collapse;
+}
+
+h1, h2, h3, h4, h5, h6, div, p, dl, dt, dd, ul, ol, li, form, fieldset, blockquote, address, table, thead, tbody, tfoot, tr, td, caption 
+{
+	margin:0;
+	padding:0;
 }
 
 
 
+/* btn css */
+.input-btn 
+{
+  font-family: "Inter Tight", sans-serif;
+  width: 70px;
+  height: 35px;
+  border: none;
+  border-radius: 10%;
+  font-size: 15px;
+  font-weight: 600;
+  margin-right: 30px;
+  background: rgb(255, 255, 255); /*변경*/
+}
 
-header {
-  background-color: fff;
+header 
+{
   display: flex;
-  height: 58px;
-  justify-content: space-between;
+  height: 7%;
+  /* border-bottom: 10px solid #e4e4e4; 밑에 줄 부분*/
+  box-sizing: border-box;
+  padding: 30px; /*간격 벌어지고 margin처럼 이동*/
+}
+
+header > h1 {
+  display: inline-block;
+  height: 100%;
+  transform:translate(10px); /*추가*/
+  flex-grow: 1;
+}
+
+header > h1 > span 
+{
+      /*display, position*/
+  /*width, height*/
+  /*border*/
+  /*font*/
+  /*padding, margin*/
+  /*color*/
+  /*add (추가한거), etc*/
+  font-family: "Archivo Black", sans-serif;
+  color: #a7a7a7; 
+  font-size: 24px; 
+  font-weight: 400; 
+  vertical-align: center; /* 변경 */
+}
+
+.calendar_title 
+{
+  margin: 0 auto; 
+  flex-grow: 0; /* 변경 */
+}
+
+.calendar_title .prev , .next
+{
+  width: 30px;
+  height: 100%;
+  cursor: pointer;
+  border: none;
+  font-size: 20px;
+  outline: none;
+  background-color:black; /*추가*/
+  color: #5c5c5c;
+}
+
+.calendar_title .current-year-month 
+{
+  font-family: "Archivo Black", sans-serif;
+  font-size: 24px;
+  vertical-align: middle;
+  color: rgb(255, 255, 255); /* 변경 */
+  display: inline-block;
+  margin: 0 20px;
+}
+
+.content-left {
+  float: left;
+  box-sizing: border-box;
+  width: 20%;
+}
+
+.left-main 
+{
+  margin-top: 20%;
+}
+
+.left-main .main-wrap {
+  text-align: center;
+  font-weight: 700;
+}
+
+.left-main .todo-wrap 
+{
+  padding: 20% 0 10% 10%;
+}
+
+.left-main .todo-wrap .todo-title 
+{
+  font-family: "Archivo Black", sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 10%;
+  color: #5c5c5c;
+}
+
+.left-main .todo-wrap .input-form .input-box 
+{
+  width: 90%;
+  height: 50px;
+  font-size: 20px;
+  border: 0;
+  background-color:#000;
+  border-bottom: 2px solid rgb(255, 255, 255);
+  margin-bottom: 30px;
+  outline-style: none;
+}
+
+.content-right {
+  float: right;
+  box-sizing: border-box;
+  width: 80%;
+}
+
+.content-right .day-of-week 
+{
+  background: rgb(255, 255, 255);
+  width: 100%;
+  height: 100%;
+}
+
+.content-right .day-of-week {
+    font-family: "Inter Tight", sans-serif;
+    display: flex;
+    justify-content: space-between; /* 자식 요소들 사이에 균등한 간격을 줌 */
+    padding: 10px; /* 컨테이너 안쪽 여백 */
+}
+
+.content-right .day-of-week .dayHeader {
+    transform:translate(-10px);
+    padding: 10px; /* 박스 안쪽 여백 */
+    text-align: center;
+    flex: 1; /* 각 자식 요소가 동일한 크기로 확장되도록 함 */
+    margin: 10 5px; /* 좌우 여백을 통해 간격을 줌 */
+}
+
+/* 첫 번째 박스와 마지막 박스의 좌우 여백 제거 */
+.content-right .day-of-week .dayHeader:first-child {
+    margin-left: 0;
+}
+
+.content-right .day-of-week .dayHeader:last-child {
+    margin-right: 0;
+}
+
+.content-right .day-of-week .dayHeader.sun 
+{
+  color: #f02f2f;
+}
+
+.content-right .day-of-week .dayHeader.sat 
+{
+  color: #2208e7;
+}
+
+#weekly > div 
+{
+  font-family: "Inter Tight", sans-serif;
+  box-sizing: border-box;
+  text-align: center;
+  width: calc(100% / 7);
+  height: 130px;
+  display: inline-block;
+  border-bottom: 1px solid #e4e4e4;
+  vertical-align: top;
+  padding: 1%;
+  color: rgb(255, 255, 255);
+  overflow-y: auto;
+}
+
+#weekly > div.active 
+{
+  background: blue;
+}
+
+#weekly > div + div
+{
+  border-left: 1px solid #e4e4e4;
+}
+
+.calendar-body #weekly > div:first-child 
+{
+  border-left: 1px solid #e4e4e4;
+}
+
+.calendar-body #weekly > div:last-child 
+{
+  border-right: 1px solid #e4e4e4;
+}
+
+.todoList 
+{
+  margin-top: 10%;
+  font-size: 20px;
+}
+
+.todoList > li 
+{
+  position: relative; 
+  color:white; 
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.todoList > li > span
+{
+  white-space: nowrap;
+  width: 70%;
   overflow: hidden;
-  position: relative;
-  top:-50px;
+  display: block;
+  text-overflow: ellipsis;
 }
 
-.header {
-    background-color: green;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    height: 80px;
-    padding-top: 18px;
-    position: absolute;
-    top: 0px;
-    width: 80px;
-
-
-    @include m(left) {
-      left: -25px;
-      padding-left: 38px;
-      text-align: left;
-    }
-
-    @include m(right) {
-      padding-right: 32px;
-      right: -25px;
-      text-align: right;
-    }
-  }
+.todoList > li+li {
+  margin-top: 5%;
 }
 
-
-
-/* not required */
-*,:active{
-	outline: none;
+.todoList > li > .del-data
+{
+  position: absolute;
+  top: 0; right: 5%;
+  width: 20%;
+  height: 25px;
+  background: none;
+  border: none;
+  font-size: 0px;
 }
 
-*{
-	padding: 0px;
-	margin: 0px;
+.todoList > li > .del-data::after, .todoList > li > .del-data::before
+{
+  content: '';
+  position: absolute;
+  top:0; left: 50%;
+  display: block;
+  width: 4px;
+  height: 18px;
+  background: rgb(255, 82, 195);
 }
 
-body{
-	margin: 20px;
-	background-color: black; 
-	-webkit-font-smoothing: antialiased;
-	text-rendering: optimizeLegibility;
-	font-size: 96.5%;
-	font-family: Helvetica, Arial, sans-serif;
+.todoList > li > .del-data::after, .closed::after 
+{
+  transform: rotate(45deg);
 }
 
-input{
-	font-family: Helvetica, Arial, sans-serif;
+.todoList > li > .del-data::before, .closed::before
+{
+  transform: rotate(-45deg);
 }
 
-h1, h2, h3, h4, h5, p{
-	margin-bottom: 10px;
+.showList 
+{
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(255, 38, 179);
+  width: 400px;
+  height: 300px;
+  z-index: 1;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
-p{
-	line-height: 20px;
+.listText 
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  word-break:break-all;
+  width: 70%;
+  font-size: 20px;
+  color: #fff;
 }
 
-a{
-	text-decoration: none;
-	color: #FF462B;
+.createDate {
+  position: absolute;
+  bottom: 7%;
+  right: 7%;
+  font-size: 20px;
+  color: #e4e4e4;
 }
-
-.clearfix{
-	clear: both;
-}
-
-.animate{
-	-webkit-transition: all 0.3s ease-in-out;
-	-moz-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
-}
-
-
-/* required */
-.calendar{
-	position: absolute;
-	border-radius: 4px;
-	overflow: hidden;
-	width: 800px;
-	height: 450px;
-	left: 50%;
-	margin-left: -400px;
-	margin-top: -225px;
-	top: 50%;
-	background-color: #ffffff;
-	color: #333333;
-}
-
-.calendar h1, .calendar h2{
-	font-weight: 300;
-	font-size: 26px;
-	line-height: 28px;
-	text-transform: uppercase;
-	margin: 0px 0px 20px 0px;
-}
-
-.calendar h1 span{
-	display: block;
-}
-
-.calendar .col{
-	position: relative;
-	float: left;
-	height: 100%;
-}
-
-.calendar .col .content{
-	padding: 40px;
-}
-
-.calendar ul{
-	margin: 0px;
-}
-
-.calendar ul li{
-	list-style: none;
-}
-
-.calendar .leftCol{
-	width: 40%;
-	background-color: #F48989;
-}
-
-.calendar .noteList li{
-	color: #ffffff;
-	margin-bottom: 10px;
-}
-
-.calendar .notes p,
-.calendar .notes input,
-.calendar .noteList li{
-	font-weight: 300;
-	font-size: 14px;
-}
-
-.calendar .notes p{
-	border-bottom: solid 1px rgba(255,255,255,0.4);
-}
-
-.calendar .notes input{
-	background-color: #F48989;
-	color: #ffffff;
-	border: none;
-	width: 200px;
-}
-
-.calendar .addNote,
-.calendar .removeNote{
-	float: right;
-	color: rgba(255,255,255,0.4);
-	font-weight: bold;
-	margin-left: 20px;
-}
-
-.calendar .addNote:hover,
-.calendar .removeNote:hover{
-	color: #ffffff;
-}
-
-.calendar .addNote{
-	font-size: 16px;
-}
-
-.calendar .leftCol h1{
-	color: #ffffff;
-	margin-bottom: 40px;
-}
-
-.calendar .rightCol{
-	width: 60%;
-}
-
-.calendar .rightCol h2{
-	color: #C7BEBE;
-	text-align: right;
-	margin-bottom: 70px;
-}
-
-.calendar .months li,
-.calendar .weekday li,
-.calendar .days li{
-	float: left;
-	text-transform: uppercase;
-}
-
-.calendar .months li a,
-.calendar .weekday li a,
-.calendar .days li a{
-	display: block;
-	color: #747978;
-}
-
-.calendar .months li a{
-	font-size: 10px;
-	color: #C7BEBE;
-	text-align: center;
-	width: 32px;
-	margin-bottom: 20px;
-}
-
-.calendar .months li .selected{
-	font-weight: bold;
-	color: #747978;
-}
-
-.calendar .weekday li a{
-	width: 55px;
-	text-align: center;
-	margin-bottom: 20px;
-	font-size: 12px;
-}
-
-.calendar .days li{
-	width: 55px;
-}
-
-.calendar .days li a{
-	width: 36px;
-	height: 24px;
-	text-align: center;
-	margin: auto auto;
-	font-size: 12px;
-	font-weight: bold;
-	border-radius: 12px;
-	margin-bottom: 10px;
-	padding-top: 10px;
-}
-
-
-.calendar .days li a:hover{
-	background-color: #EEEDE9;
-}
-
-.calendar .days li .selected{
-	background-color: #F5A1A3!important;
-	color: #ffffff;
-}
-
-.calendar .days li .event{
-	color: #F5A1A3;
-}
-
-
-/* placeholder color */
-::-webkit-input-placeholder {color: #ffffff; }
-:-moz-placeholder {color: #ffffff; }
-::-moz-placeholder {color: #ffffff; }
-:-ms-input-placeholder {color: #ffffff; }
