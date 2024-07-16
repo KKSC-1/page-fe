@@ -49,7 +49,7 @@ function buildCalendar() {
   }
   headerYear.innerHTML = `${monthList[firstDate.getMonth()]}&nbsp;&nbsp;&nbsp;&nbsp;${today.getFullYear()}`;
   makeElement(firstDate);
-  currentDateget();
+  currentDate = today.format();
   resetInsert();
 }
 
@@ -85,46 +85,6 @@ function removeCalendar() {
   }
 }
 
-prevEl.addEventListener('click', function () {
-  today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
-  removeCalendar();
-  buildCalendar();
-  resetInsert();
-  redrawLi()
-});
-  
-nextEl.addEventListener('click', function () {
-  today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
-  removeCalendar();
-  buildCalendar();
-  resetInsert();
-  redrawLi()
-});
-
-function currentDateget() {
-  currentDate = today.format();
-}
-
-calendarBody.addEventListener('click', function (e) {
-  let target = e.target;
-  let eachDate = document.querySelectorAll('.calendar-body > #weekly > div');
-  if (e.target.innerHTML === '') return;
-  for (let i = 0; i < eachDate.length; i++) {
-    eachDate[i].classList.remove('active');
-  }
-  target.classList.add('active');
-  today = new Date(today.getFullYear(), today.getMonth(), target.innerHTML);
-  currentDateget();
-  redrawLi();
-  resetInsert();
-});
-
-inputBtn.addEventListener('click', function (e) {
-  e.preventDefault();
-  let inputValue = inputBox.value;
-  insertTodo(inputValue);
-});
-
 function insertTodo(text) {
   let todoObj = {
     todo: text,
@@ -148,7 +108,7 @@ function insertTodo(text) {
   delBtn.addEventListener('click', delWork);
   liEl.addEventListener('dblclick', showTodo);
   todoObj.id = DATA[currentDate].length;
-  save();
+  localStorage.setItem(currentDate, JSON.stringify(DATA[currentDate]));
   inputBox.value = '';
 }
 
@@ -213,7 +173,7 @@ function delWork(e) {
     return todo.id !== parseInt(delParentLi.id);
   });
   DATA[currentDate] = cleanToDos;
-  save();
+  localStorage.setItem(currentDate, JSON.stringify(DATA[currentDate]));
 }
 
 function showTodo(e){
@@ -226,8 +186,40 @@ closedBtn.addEventListener('click', function(e){
   showList.style.display = "none";
 });
 
-function save() {
-  localStorage.setItem(currentDate, JSON.stringify(DATA[currentDate]));
-}
+prevEl.addEventListener('click', function () {
+  today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+  removeCalendar();
+  buildCalendar();
+  resetInsert();
+  redrawLi()
+});
+  
+nextEl.addEventListener('click', function () {
+  today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+  removeCalendar();
+  buildCalendar();
+  resetInsert();
+  redrawLi()
+});
+  
+calendarBody.addEventListener('click', function (e) {
+  let target = e.target;
+  let eachDate = document.querySelectorAll('.calendar-body > #weekly > div');
+  if (e.target.innerHTML === '') return;
+  for (let i = 0; i < eachDate.length; i++) {
+    eachDate[i].classList.remove('active');
+  }
+  target.classList.add('active');
+  today = new Date(today.getFullYear(), today.getMonth(), target.innerHTML);
+  currentDate = today.format();
+  redrawLi();
+  resetInsert();
+});
+
+inputBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+  let inputValue = inputBox.value;
+  insertTodo(inputValue);
+});
 
 }
