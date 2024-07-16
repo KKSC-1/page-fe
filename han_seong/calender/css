@@ -75,45 +75,37 @@ h1, h2, h3, h4, h5, h6, div, p, dl, dt, dd, ul, ol, li, form, fieldset, blockquo
   font-size: 15px;
   font-weight: 600;
   margin-right: 30px;
-  background: rgb(255, 255, 255); /*변경*/
+  background: rgb(255, 255, 255);
 }
 
 header 
 {
   display: flex;
   height: 7%;
-  /* border-bottom: 10px solid #e4e4e4; 밑에 줄 부분*/
   box-sizing: border-box;
-  padding: 30px; /*간격 벌어지고 margin처럼 이동*/
+  padding: 30px;
 }
 
 header > h1 {
   display: inline-block;
   height: 100%;
-  transform:translate(10px); /*추가*/
+  transform:translate(10px);
   flex-grow: 1;
 }
 
 header > h1 > span 
 {
-      /*display, position*/
-  /*width, height*/
-  /*border*/
-  /*font*/
-  /*padding, margin*/
-  /*color*/
-  /*add (추가한거), etc*/
   font-family: "Archivo Black", sans-serif;
   color: #a7a7a7; 
   font-size: 24px; 
   font-weight: 400; 
-  vertical-align: center; /* 변경 */
+  vertical-align: center;
 }
 
 .calendar_title 
 {
   margin: 0 auto; 
-  flex-grow: 0; /* 변경 */
+  flex-grow: 0;
 }
 
 .calendar_title .prev , .next
@@ -124,7 +116,7 @@ header > h1 > span
   border: none;
   font-size: 20px;
   outline: none;
-  background-color:black; /*추가*/
+  background-color:black;
   color: #5c5c5c;
 }
 
@@ -133,7 +125,7 @@ header > h1 > span
   font-family: "Archivo Black", sans-serif;
   font-size: 24px;
   vertical-align: middle;
-  color: rgb(255, 255, 255); /* 변경 */
+  color: rgb(255, 255, 255);
   display: inline-block;
   margin: 0 20px;
 }
@@ -196,19 +188,18 @@ header > h1 > span
 .content-right .day-of-week {
     font-family: "Inter Tight", sans-serif;
     display: flex;
-    justify-content: space-between; /* 자식 요소들 사이에 균등한 간격을 줌 */
-    padding: 10px; /* 컨테이너 안쪽 여백 */
+    justify-content: space-between;
+    padding: 10px;
 }
 
 .content-right .day-of-week .dayHeader {
     transform:translate(-10px);
-    padding: 10px; /* 박스 안쪽 여백 */
+    padding: 10px;
     text-align: center;
-    flex: 1; /* 각 자식 요소가 동일한 크기로 확장되도록 함 */
-    margin: 10 5px; /* 좌우 여백을 통해 간격을 줌 */
+    flex: 1;
+    margin: 10 5px;
 }
 
-/* 첫 번째 박스와 마지막 박스의 좌우 여백 제거 */
 .content-right .day-of-week .dayHeader:first-child {
     margin-left: 0;
 }
