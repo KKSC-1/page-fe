@@ -1,86 +1,131 @@
-<div class="calendar">
-  <div class="col leftCol">
-	  <div class="content">
-		  <h1 class="date">
-        Friday
-        <span>
-          September 12th
-        </span> 
-		  </h1>
-			<div class="notes">
-			  <p>
-				  <input type="text" value="" placeholder="new note"/>
-					<a href="#" title="Add note" class="addNote animate">
-            +
-          </a>
-					</p>
-						<ul class="noteList">
-							<li>Headbutt a lion
-                <a href="#" title="Remove note" class="removeNote animate">
-                  x
-                </a>
-                  
-              </li>
-						</ul>
-			</div>
-		</div>
-	</div>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+  
+  <!-- prev, next icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
+  <!-- title font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Archivo+Black&family=Bebas+Neue&display=swap" rel="stylesheet">
+  
+  <!-- calendar font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Archivo+Black&family=Bebas+Neue&family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  
+  <!-- todolist_font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Archivo+Black&family=Bebas+Neue&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Nanum+Gothic:wght@400;700;800&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+  <!-- todolist_font_ko -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+  
+</head>
+  
+<body>
+<div id = "wrap_calendar" class = wrap_calendar>
+<header>
+  <h1>
+    <span>KKSC_Calendar</span>
+  </h1>
+  
+  <div class="calendar_title">
+    <button class="prev"
+            style = >
+      <span class="material-symbols-outlined">
+        arrow_back
+      </span>
+    </button>
+    
+    <span class="current-year-month">
+      
+    </span>
+    
+    <button class="next"
+            style = >
+      <span class="material-symbols-outlined">
+        arrow_forward
+      </span>
+    </button>
+  </div>
+</header>
 
-	<div class="col rightCol">
-				<div class="content">
-					<h2 class="year">2024</h2>
-          <h3 class="year">06</h3>
-					
-          <a class="btn-prev fontawesome-angle-left" href="#"></a>
-          <a class="btn-next fontawesome-angle-right" href="#"></a>
+<section class="content-left">
+  <div class="left-main">
+    <div class="main-wrap">
+
+    </div>
+    
+    <div class="todo-wrap">
+      <div class="todo-title">
+        Work of KKSC
+      </div>
+      
+      <form class="input-form">
+        <input type="text" placeholder="" class="input-box" />
+        <button type="submit" class="input-btn">
+          INPUT
+        </button>
+      </form>
+      
+      <ul class="todoList">
+        
+      </ul>
+      
+      <div class="showList">
+        <span class="listText">
           
-          <ul class="months">
-						<li><a href="#" title="Jan" data-value="1">Jan</a></li>
-						<li><a href="#" title="Feb" data-value="2">Feb</a></li>
-						<li><a href="#" title="Mar" data-value="3">Mar</a></li>
-						<li><a href="#" title="Apr" data-value="4">Apr</a></li>
-						<li><a href="#" title="May" data-value="5">May</a></li>
-						<li><a href="#" title="Jun" data-value="6">Jun</a></li>
-						<li><a href="#" title="Jul" data-value="7">Jul</a></li>
-						<li><a href="#" title="Aug" data-value="8">Aug</a></li>
-						<li><a href="#" title="Sep" data-value="9" class="selected">Sep</a></li>
-						<li><a href="#" title="Oct" data-value="10">Oct</a></li>
-						<li><a href="#" title="Nov" data-value="11">Nov</a></li>
-						<li><a href="#" title="Dec" data-value="12">Dec</a></li>
-					</ul>
-					<div class="clearfix"></div>
-					<ul class="weekday">
-						<li><a href="#" title="Mon" data-value="1">Mon</a></li>
-						<li><a href="#" title="Tue" data-value="2">Tue</a></li>
-						<li><a href="#" title="Wed" data-value="3">Wed</a></li>
-						<li><a href="#" title="Thu" data-value="4">Thu</a></li>
-						<li><a href="#" title="Fri" data-value="5">Fri</a></li>
-						<li><a href="#" title="Say" data-value="6">Sat</a></li>
-						<li><a href="#" title="Sun" data-value="7">Sun</a></li>
-					</ul>
-					<div class="clearfix"></div>
-					<ul class="days">
-						<script>
-							for( var _i = 1; _i <= 31; _i += 1 ){
-								var _addClass = '';
-								if( _i === 12 ){ _addClass = ' class="selected"'; }
-								
-								switch( _i ){
-									case 8:
-									case 10:
-									case 27:
-										_addClass = ' class="event"';
-									break;
-								}
-
-								document.write( '<li><a href="#" title="'+_i+'" data-value="'+_i+'"'+_addClass+'>'+_i+'</a></li>' );
-							}
-						</script>
-					</ul>
-					<div class="clearfix"></div>
-				</div>
-			</div>
-
-			<div class="clearfix"></div>
-
-		</div>
+        </span>
+        
+        <span class="createDate">
+          
+        </span>
+        
+        <button class="closed">
+          
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+  
+<section class="content-right">
+    <div class="day-of-week">
+      <div class="dayHeader sun">
+        Sun
+      </div>
+      <div class="dayHeader">
+        Mon
+      </div>
+      <div class="dayHeader">
+        Tue
+      </div>
+      <div class="dayHeader">
+        Wed
+      </div>
+      <div class="dayHeader">
+        Thu
+      </div>
+      <div class="dayHeader">
+        Fri
+      </div>
+      <div class="dayHeader sat">
+        Sat
+      </div>
+    </div>
+    
+    <div class="calendar-body">
+      
+    </div>
+</section>
+</div>
+</body>
+</html>
