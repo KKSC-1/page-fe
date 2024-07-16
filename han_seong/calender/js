@@ -41,7 +41,6 @@ function buildCalendar() {
   const leapYear = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const notLeapYear = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const headerYear = document.querySelector('.current-year-month');
-  // 윤년 체크하기
   if (firstDate.getFullYear() % 4 === 0) {
     pageYear = leapYear;
   } else {
@@ -76,6 +75,7 @@ function makeElement(firstDate) {
     weekly++;
     calendarBody.appendChild(weeklyEl);
   }
+
 }
 
 function removeCalendar() {
@@ -84,6 +84,42 @@ function removeCalendar() {
     divEls[i].remove();
   }
 }
+
+prevEl.addEventListener('click', function () {
+  today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+  removeCalendar();
+  buildCalendar();
+  resetInsert();
+  redrawLi()
+});
+  
+nextEl.addEventListener('click', function () {
+  today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+  removeCalendar();
+  buildCalendar();
+  resetInsert();
+  redrawLi()
+});
+
+calendarBody.addEventListener('click', function (e) {
+  let target = e.target;
+  let eachDate = document.querySelectorAll('.calendar-body > #weekly > div');
+  if (e.target.innerHTML === '') return;
+  for (let i = 0; i < eachDate.length; i++) {
+    eachDate[i].classList.remove('active');
+  }
+  target.classList.add('active');
+  today = new Date(today.getFullYear(), today.getMonth(), target.innerHTML);
+  currentDate = today.format();
+  redrawLi();
+  resetInsert();
+});
+
+inputBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+  let inputValue = inputBox.value;
+  insertTodo(inputValue);
+});
 
 function insertTodo(text) {
   let todoObj = {
@@ -184,42 +220,6 @@ function showTodo(e){
 
 closedBtn.addEventListener('click', function(e){
   showList.style.display = "none";
-});
-
-prevEl.addEventListener('click', function () {
-  today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
-  removeCalendar();
-  buildCalendar();
-  resetInsert();
-  redrawLi()
-});
-  
-nextEl.addEventListener('click', function () {
-  today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
-  removeCalendar();
-  buildCalendar();
-  resetInsert();
-  redrawLi()
-});
-  
-calendarBody.addEventListener('click', function (e) {
-  let target = e.target;
-  let eachDate = document.querySelectorAll('.calendar-body > #weekly > div');
-  if (e.target.innerHTML === '') return;
-  for (let i = 0; i < eachDate.length; i++) {
-    eachDate[i].classList.remove('active');
-  }
-  target.classList.add('active');
-  today = new Date(today.getFullYear(), today.getMonth(), target.innerHTML);
-  currentDate = today.format();
-  redrawLi();
-  resetInsert();
-});
-
-inputBtn.addEventListener('click', function (e) {
-  e.preventDefault();
-  let inputValue = inputBox.value;
-  insertTodo(inputValue);
 });
 
 }
