@@ -1,3 +1,96 @@
+/* Event_Registration.css */
+
+#wrapper2 {
+	text-align: center;
+}
+
+.num 
+{
+  cursor: pointer;
+  color: red;
+  margin-left: 10px;
+}
+
+.Button 
+{
+  /*
+  
+  */
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	padding: 5px 10px;
+	border: 1px solid #aaa;
+	background-color: pink;
+	color: #666;
+  
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.overlay 
+{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.5);
+	transition: opacity 200ms;
+  visibility: hidden;
+	opacity: 0;
+
+  /* 아무데나 눌러도 나갈 수 있게 */
+  .cancel 
+  {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+  }
+  
+  &:target 
+  {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.popup {
+	margin: 75px auto;
+	padding: 20px;
+	background: #fff;
+	border: 1px solid #666;
+	width: 300px;
+  top:100px;
+	box-shadow: 0 0 50px rgba(0,0,0,0.5);
+	position: relative;
+
+  h2 {
+    margin-top: 0;
+    color: #666;
+    font-family: "Trebuchet MS", Tahoma, Arial, sans-serif;
+  }
+  
+  .close {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 20px;
+    right: 20px;
+    opacity: 0.8;
+    transition: all 200ms;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #666;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+
+
 /* font.css */
 
 .nanum-gothic-regular {
@@ -31,62 +124,53 @@
   font-style: normal;
 }
 
-/* reset.css : 기본적으로 태그들에 적용되어 있는 불필요한 css를 reset */
+
+
+/* reset.css */
 
 body 
 {
-	margin:0;
+  max-width : 1920px;
+  max-height : 960px;
+  margin:0;
 	padding:0;
 	font-family: 'Roboto', sans-serif;
-  background-color:black; /*추가*/
-}
-
-li 
-{
-  list-style:none;
-}
-
-a 
-{
-  text-decoration:none;
-}
-
-table 
-{
-  border-collapse: collapse;
+  background-color:black;
+  
 }
 
 h1, h2, h3, h4, h5, h6, div, p, dl, dt, dd, ul, ol, li, form, fieldset, blockquote, address, table, thead, tbody, tfoot, tr, td, caption 
 {
 	margin:0;
 	padding:0;
+  list-style:none;
 }
 
 
 
-/* btn css */
 .input-btn 
 {
-  font-family: "Inter Tight", sans-serif;
   width: 70px;
   height: 35px;
   border: none;
   border-radius: 10%;
+  font-family: "Inter Tight", sans-serif;
   font-size: 15px;
   font-weight: 600;
   margin-right: 30px;
-  background: rgb(255, 255, 255);
+  background: rgb(255, 255, 255); 
 }
 
 header 
 {
   display: flex;
-  height: 7%;
+  height: 5%; 
   box-sizing: border-box;
   padding: 30px;
 }
 
-header > h1 {
+header > h1 
+{
   display: inline-block;
   height: 100%;
   transform:translate(10px);
@@ -96,9 +180,9 @@ header > h1 {
 header > h1 > span 
 {
   font-family: "Archivo Black", sans-serif;
-  color: #a7a7a7; 
   font-size: 24px; 
   font-weight: 400; 
+  color: #a7a7a7; 
   vertical-align: center;
 }
 
@@ -112,36 +196,36 @@ header > h1 > span
 {
   width: 30px;
   height: 100%;
-  cursor: pointer;
   border: none;
   font-size: 20px;
-  outline: none;
   background-color:black;
   color: #5c5c5c;
+  outline: none;
+  cursor: pointer;
 }
 
 .calendar_title .current-year-month 
 {
+  display: inline-block;
   font-family: "Archivo Black", sans-serif;
   font-size: 24px;
-  vertical-align: middle;
-  color: rgb(255, 255, 255);
-  display: inline-block;
   margin: 0 20px;
+  color: rgb(255, 255, 255);
 }
 
-.content-left {
-  float: right;
-  box-sizing: border-box;
+.content-left 
+{
   width: 20%;
+  float: right;
 }
 
 .left-main 
 {
-  margin-top: 20%;
+  margin-top: 10%;
 }
 
-.left-main .main-wrap {
+.left-main .main-wrap 
+{
   text-align: center;
   font-weight: 700;
 }
@@ -164,17 +248,18 @@ header > h1 > span
 {
   width: 90%;
   height: 50px;
-  font-size: 20px;
   border: 0;
-  background-color:#000;
   border-bottom: 2px solid rgb(255, 255, 255);
+  font-size: 20px;
   margin-bottom: 30px;
+  background-color:#000;
+  color: white;
   outline-style: none;
 }
 
-.content-right {
-  float: right;
-  box-sizing: border-box;
+.content-right 
+{
+  float: left; 
   width: 80%;
 }
 
@@ -183,16 +268,15 @@ header > h1 > span
   background: rgb(255, 255, 255);
   width: 100%;
   height: 100%;
-}
-
-.content-right .day-of-week {
-    font-family: "Inter Tight", sans-serif;
+  transform:translate(-20px);
+      font-family: "Inter Tight", sans-serif;
     display: flex;
     justify-content: space-between;
     padding: 10px;
 }
 
-.content-right .day-of-week .dayHeader {
+.content-right .day-of-week .dayHeader 
+{
     transform:translate(-10px);
     padding: 10px;
     text-align: center;
@@ -200,11 +284,13 @@ header > h1 > span
     margin: 10 5px;
 }
 
-.content-right .day-of-week .dayHeader:first-child {
+.content-right .day-of-week .dayHeader:first-child
+{
     margin-left: 0;
 }
 
-.content-right .day-of-week .dayHeader:last-child {
+.content-right .day-of-week .dayHeader:last-child 
+{
     margin-right: 0;
 }
 
@@ -262,7 +348,7 @@ header > h1 > span
 .todoList > li 
 {
   position: relative; 
-  color:white; 
+  color:white;
   font-family: "Nanum Gothic", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -296,7 +382,8 @@ header > h1 > span
 {
   content: '';
   position: absolute;
-  top:0; left: 50%;
+  top : 0; 
+  left: 50%;
   display: block;
   width: 4px;
   height: 18px;
@@ -328,6 +415,25 @@ header > h1 > span
   overflow: hidden;
 }
 
+.closed {
+  position: absolute;
+  top: 5%; right: 5%; 
+  width: 40px; 
+  height: 40px;
+  font-size: 0;
+  background: none;
+  border: none;
+}
+
+.closed::after, .closed::before {
+  content: '';
+  position: absolute;
+  top: 14%; right: 44%;
+  width: 3px;
+  height: 25px;
+  background: #fff;
+}
+
 .listText 
 {
   position: absolute;
@@ -346,4 +452,61 @@ header > h1 > span
   right: 7%;
   font-size: 20px;
   color: #e4e4e4;
+}
+
+.bgblack {
+  display: none;
+  background: #acacac;
+  opacity: 0.6;
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+}
+
+@media (max-width: 768px) {
+  body {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header > h1 {
+    margin-bottom: 20px;
+  }
+
+  .calendar_title {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .content-left {
+    width: 100%;
+    float: none;
+    margin-bottom: 20px;
+  }
+
+  .content-right {
+    width: 100%;
+    float: none;
+  }
+
+  .day-of-week {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .dayHeader {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  #weekly > div {
+    width: 14.288%;
+    /* display: block; */
+    margin-bottom: 5px;
+    color:white;
+  }
 }
