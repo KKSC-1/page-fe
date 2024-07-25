@@ -1,6 +1,6 @@
 var isBool;
 let today = new Date();
-var spanEl2; // 원래 const였음, 여기 선언도 아님
+var spanEl2;
 let currentDate;
 
 const event_name = document.querySelector('.event_name');
@@ -27,7 +27,6 @@ Date.prototype.format2 = function () {
 
 
 
-//main.js 확인 완료
 window.onload = function () {
 const calendarBody = document.querySelector('.calendar-body');
 const prevEl = document.querySelector('.prev');
@@ -38,9 +37,8 @@ const inputList = document.querySelector('.todoList');
 const showList = document.querySelector('.showList');
 const listText = document.querySelector('.listText');
 const createDate = document.querySelector('.createDate');
-const bgblack = document.querySelector('.bgblack'); // 없앴다가 살린거
-const closedBtn = document.querySelector('.closed'); // 없앴다가 살린거
-// let currentDate;
+const bgblack = document.querySelector('.bgblack');
+const closedBtn = document.querySelector('.closed');
 
 buildCalendar();
 function buildCalendar() {
@@ -65,16 +63,6 @@ function buildCalendar() {
   currentDate = today.format();
   resetInsert();
 }
-
-  /*
-  function showMain() {
-  const mainDay = document.querySelector('.main-day');
-  const mainDate = document.querySelector('.main-date');
-  const dayList = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  mainDay.innerHTML = dayList[today.getDay()];
-  mainDate.innerHTML = today.getDate();
-}
-*/
   
 function makeElement(firstDate) {
   let weekly = 100;
@@ -103,8 +91,7 @@ function makeElement(firstDate) {
     }
     weekly++; calendarBody.appendChild(weeklyEl);
   }
-// let clickedDate = document.getElementsByClassName(today.getDate());
-  // clickedDate[0].classList.add('active');
+
 }
 
 function removeCalendar() {
@@ -113,26 +100,16 @@ function removeCalendar() {
     divEls[i].remove();
   }
 }
-
-/*
-function currentDateget() {
-  // format()을 이용해서 현재 날짜를 보기좋게 출력해주기 위해 사용.
-  currentDate = today.format();
-}
-*/
   
 function updateCalendar() {
   let event_name = document.querySelector('.event_name'); 
-  // event_name 요소 선택
   event_name.innerHTML = ''; 
-  // 기존 내용을 비움
           
   if (DATA[currentDate]) 
   {
     for (let i = 0; i < DATA[currentDate].length; i++) 
     {
       event_name.innerHTML += DATA[currentDate][i].todo + '<br>'; 
-        // 각 일정을 새로운 줄에 추가
     }
   } 
       
@@ -148,7 +125,7 @@ prevEl.addEventListener('click', function () {
   removeCalendar();
   buildCalendar();
   resetInsert();
-  redrawLi(); // 세미콜론 붙임
+  redrawLi();
 });
   
 nextEl.addEventListener('click', function () {
@@ -156,13 +133,12 @@ nextEl.addEventListener('click', function () {
   removeCalendar();
   buildCalendar();
   resetInsert();
-  redrawLi(); // 세미콜론 붙임
+  redrawLi();
 });
 
 calendarBody.addEventListener('click', function (e) {
   let target = e.target;
   let eachDate = document.querySelectorAll('.calendar-body > #weekly > div');
-  // if (e.target.innerHTML === '') return;
   for (let i = 0; i < eachDate.length; i++) 
   {
    eachDate[i].classList.remove('active');
@@ -172,8 +148,6 @@ calendarBody.addEventListener('click', function (e) {
   isBool = true;
   target.classList.add('active');
   today = new Date(today.getFullYear(), today.getMonth(), target.innerHTML);
-  // showMain();
-  // currentDateget();
   currentDate = today.format();
   redrawLi();
   resetInsert();
@@ -225,7 +199,6 @@ function insertTodo(text) {
   delBtn.addEventListener('click', delWork);
   liEl.addEventListener('dblclick', showTodo);
   todoObj.id = DATA[currentDate].length;
-  // save();
   localStorage.setItem(currentDate, JSON.stringify(DATA[currentDate]));
   inputBox.value = '';
 }
@@ -239,7 +212,6 @@ function redrawLi() {
     if (todoList === currentDate) {
       for (let i = 0; i < DATA[todoList].length; i++) {
         const liEl2 = document.createElement('li');
-        // const spanEl2 = document.createElement('span');
         spanEl2 = document.createElement('span');
         const delBtn2 = document.createElement('button');
         delBtn2.innerText = "DEL";
@@ -295,7 +267,6 @@ function delWork(e) {
     return todo.id !== parseInt(delParentLi.id);
   });
   DATA[currentDate] = cleanToDos;
-  // save();
   localStorage.setItem(currentDate, JSON.stringify(DATA[currentDate]));
 }
 
@@ -308,12 +279,6 @@ function showTodo(e){
   
 }
 
-/*
-function save() {
-  localStorage.setItem(currentDate, JSON.stringify(DATA[currentDate]));
-}
-*/
-
 
 
 
@@ -321,20 +286,13 @@ function save() {
 var inp = document.querySelector('#userName');
 var but = document.querySelector('#userButton');
 var namelist = document.querySelector('#nameList');
-
-// .wrapper2 클래스를 가진 요소를 선택
-    const wrapper = document.querySelector('.wrapper2');
+    
+const wrapper = document.querySelector('.wrapper2');
     
     if (wrapper) {
-      // 클릭 이벤트 리스너 추가
       wrapper.addEventListener('click', function() {
         if (Today && isBool) {
             Today.innerHTML = today;
-
-            // 텍스트 내용 가져오기
-            // let spanTextContent = spanEl2.textContent;
-            
-            //event_name.innerHTML = spanTextContent;
           } 
         else {
             console.error('.today 클래스를 가진 요소를 찾을 수 없습니다.');
@@ -368,9 +326,8 @@ but.addEventListener('click', function()
     p.appendChild(span);
     span.textContent = ' X';
     span.setAttribute('class', 'num');
-    inp.value =''; //없앰
-    
-       // 새로 추가한 내용
+    inp.value ='';
+
       var i = 0;
       var paragraphs = document.getElementsByTagName('p');
       var text = paragraphs[i].textContent;
