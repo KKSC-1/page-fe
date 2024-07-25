@@ -13,9 +13,6 @@
 
 .Button 
 {
-  /*
-  
-  */
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 13px;
 	padding: 5px 10px;
@@ -39,7 +36,6 @@
   visibility: hidden;
 	opacity: 0;
 
-  /* 아무데나 눌러도 나갈 수 있게 */
   .cancel 
   {
     position: absolute;
@@ -505,7 +501,6 @@ header > h1 > span
 
   #weekly > div {
     width: 14.288%;
-    /* display: block; */
     margin-bottom: 5px;
     color:white;
   }
