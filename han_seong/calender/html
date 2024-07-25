@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
-  <!-- test -->
   <!-- prev, next icon -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -74,6 +73,44 @@
         <button type="submit" class="input-btn">
           INPUT
         </button>
+        
+        <div id="wrapper2" class = "wrapper2">
+        <a>
+          <a class="Button" href="#popup">
+          참가신청
+          </a>    
+        </a>
+        </div>
+
+        <div id="popup" class="overlay">
+          <a class="cancel" href="#">
+    
+          </a>
+	      <div class="popup">
+		      <h2>
+            Event Registration
+          </h2>
+		      <a class="close" href="#">
+            &times;
+          </a>
+		      <div class="content">
+            <div class = "event_name">
+            </div>
+            
+            <div class = "today">
+              today : 
+              <br>
+            </div>
+	          <input type="text" id="userName" placeholder="Enter name">
+            <button id="userButton">
+              Add
+            </button>
+            <div id="nameList">
+      
+            </div>
+		      </div>
+	      </div>
+        </div>
       </form>
       
       <ul class="todoList">
@@ -128,4 +165,5 @@
 </section>
 </div>
 </body>
+
 </html>
