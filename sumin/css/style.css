@@ -1,0 +1,46 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,500,700&display=swap');
+
+html{cursor: url(../images/mouse.png), auto}
+body{font-family:'Noto Sans KR',sans-serif; color:#2b2b2b; background-color: #000;}
+#wrap{width:100%; min-width: none;}
+
+
+/* section - project */
+#design{position:relative; width:1200px; height:960px; margin:0 auto;}
+#design>h2{margin-bottom:20px; font-size:70px; font-weight:500; color:#ccc; letter-spacing:1px; text-align:center;}
+
+#design>.container{position:relative; overflow:hidden; width:990px; height:530px; margin:0 auto;}
+#design>.container>ul{position:absolute; top:0; left:0; width:2970px; height:530px;}
+#design>.container>ul>li{float:left; position:absolute; top:0; left:990px; width:990px; height:530px; background-color:#000000;}
+#design>.container>ul>li>.gallery>li{float:left; text-align:center; font-size:22px; border:1px solid #ccc; box-sizing:border-box;}
+
+#design>.container>ul>li:first-child{left:0;}
+#design>.container>ul>li>.web>li:nth-child(1){width:380px; height:360px; margin-right:10px; line-height:360px; background-image:url();}
+#design>.container>ul>li>.web>li:nth-child(2){width:275px; height:360px; margin-right:10px; line-height:360px; background-image:url();}
+#design>.container>ul>li>.web>li:nth-child(3){width:315px; height:360px; line-height:360px; background-image:url();}
+#design>.container>ul>li>.web>li:nth-child(4){width:665px; height:160px; margin:10px 10px 0 0; line-height:160px; background-image:url();;}
+#design>.container>ul>li>.web>li:nth-child(5){width:315px; height:160px; margin-top:10px; line-height:160px; background-image:url();}
+
+#design>.container>ul>li>.major>li:nth-child(1){width:370px; height:530px; margin-right:10px; line-height:360px; background-image:url();}
+#design>.container>ul>li>.major>li:nth-child(2){width:275px; height:282px; margin-right:10px; line-height:282px; background-image:url();}
+#design>.container>ul>li>.major>li:nth-child(3){width:325px; height:282px; line-height:282px; background-image:url();}
+#design>.container>ul>li>.major>li:nth-child(4){float:right; width:610px; height:238px; margin-top:10px; line-height:238px; background-image:url();}
+
+#design>.container>ul>li>.graphic>li:nth-child(1){width:300px; height:260px; margin-right:10px; line-height:260px; background-image:url();}
+#design>.container>ul>li>.graphic>li:nth-child(2){width:300px; height:260px; margin-right:10px; line-height:260px; background-image:url();}
+#design>.container>ul>li>.graphic>li:nth-child(3){float:right; width:370px; height:530px; line-height:530px; background-image:url();}
+#design>.container>ul>li>.graphic>li:nth-child(4){width:300px; height:260px; margin:10px 10px 0 0; line-height:260px; background-image:url();}
+#design>.container>ul>li>.graphic>li:nth-child(5){width:300px; height:260px; margin:10px 10px 0 0; line-height:260px; background-image:url();}
+
+#design>.container>ul>li>.gallery>li>a{display:block; height:100%; text-indent:-9999px;}
+#design>.container>ul>li>.gallery>li:hover>a,#design>.container>ul>li>.gallery>li>a:focus{text-indent:0; color:#fff; background-color:rgba(0,0,0,0.5);}
+
+/*버튼 이미지 맘에 안 듬, 버튼 새로운 깔쌈한 걸로 만들고 싶음*/
+#design>button{position:absolute; top:30%; margin-top:80px; outline:none; border:none; background:none; width:21px; height:41px; text-indent:-9999px; background:transparent url(../images/rightArrow.png) no-repeat center;}
+#design>.prev{left:70px; background-position:0 0; transform: rotate(180deg);}
+#design>.next{right:70px;}
+
+#design>.gallery_bg{display:none; position:fixed; left:0; top:0; z-index:400; width:100%; height:100%; background-color:rgba(0,0,0,0.5);}
+#design>.gallery_bg>.gallery_img{position:fixed; left:50%; top:50%; z-index:410; margin:-375px 0 0 -500px; width:1000px; height:750px; background-color:#fff;}
+#design>.gallery_bg>.gallery_img>.gallClose{display:block; height:750px; text-indent:-9999px;}
