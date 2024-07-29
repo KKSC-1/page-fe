@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             newComment.innerHTML = `
                 <div class="commentItem-wrap">
                     <div class="comment-user">
-                        <div class="user-thumb"><img src="/common/images/userImg.png" alt=""></div>
+                        <div class="user-thumb"><img src="../common/images/userImg.jpg" alt=""></div>
                         <div class="user-info">
                             <span class="user-name">작성자</span>
                             <span class="user-date">9999.99.99</span>

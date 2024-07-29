@@ -1,5 +1,13 @@
+var isBool;
+let today = new Date();
+var spanEl2;
+let currentDate;
+
+const event_name = document.querySelector('.event_name');
+const Today = document.querySelector('.today');
+
 let DATA = {
-  // todolist 목록 
+  // todolist 목록
 };
 
 Date.prototype.format = function () {
@@ -20,8 +28,6 @@ Date.prototype.format2 = function () {
 
 
 window.onload = function () {
-
-let today = new Date();
 const calendarBody = document.querySelector('.calendar-body');
 const prevEl = document.querySelector('.prev');
 const nextEl = document.querySelector('.next');
@@ -31,8 +37,8 @@ const inputList = document.querySelector('.todoList');
 const showList = document.querySelector('.showList');
 const listText = document.querySelector('.listText');
 const createDate = document.querySelector('.createDate');
-let currentDate;
-
+const bgblack = document.querySelector('.bgblack');
+const closedBtn = document.querySelector('.closed');
 
 buildCalendar();
 function buildCalendar() {
@@ -41,17 +47,23 @@ function buildCalendar() {
   const leapYear = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const notLeapYear = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const headerYear = document.querySelector('.current-year-month');
+  
   if (firstDate.getFullYear() % 4 === 0) {
     pageYear = leapYear;
-  } else {
+  } 
+  
+  else {
     pageYear = notLeapYear;
   }
+  
   headerYear.innerHTML = `${monthList[firstDate.getMonth()]}&nbsp;&nbsp;&nbsp;&nbsp;${today.getFullYear()}`;
   makeElement(firstDate);
+  // currentDateget();
+  // showMain();
   currentDate = today.format();
   resetInsert();
 }
-
+  
 function makeElement(firstDate) {
   let weekly = 100;
   let dateSet = 1;
@@ -59,11 +71,16 @@ function makeElement(firstDate) {
     let weeklyEl = document.createElement('div');
     weeklyEl.setAttribute('class', weekly);
     weeklyEl.setAttribute('id', "weekly");
-    for (let j = 0; j < 7; j++) {
-      if (i === 0 && j < firstDate.getDay() || dateSet > pageYear[firstDate.getMonth()]) {
+    for (let j = 0; j < 7; j++) 
+    {
+      if (i === 0 && j < firstDate.getDay() || dateSet > pageYear[firstDate.getMonth()]) 
+      {
         let dateEl = document.createElement('div');
         weeklyEl.appendChild(dateEl);
-      } else {
+      } 
+      
+      else 
+      {
         let dateEl = document.createElement('div');
         dateEl.textContent = dateSet;
         dateEl.setAttribute('class', dateSet);
@@ -72,25 +89,43 @@ function makeElement(firstDate) {
         dateSet++;
       }
     }
-    weekly++;
-    calendarBody.appendChild(weeklyEl);
+    weekly++; calendarBody.appendChild(weeklyEl);
   }
 
 }
 
 function removeCalendar() {
   let divEls = document.querySelectorAll('.calendar-body > #weekly > div');
-  for (let i = 0; i < divEls.length; i++) {
+  for (let i = 0; i < divEls.length; i++)   {
     divEls[i].remove();
   }
 }
-
+  
+function updateCalendar() {
+  let event_name = document.querySelector('.event_name'); 
+  event_name.innerHTML = ''; 
+          
+  if (DATA[currentDate]) 
+  {
+    for (let i = 0; i < DATA[currentDate].length; i++) 
+    {
+      event_name.innerHTML += DATA[currentDate][i].todo + '<br>'; 
+    }
+  } 
+      
+  else 
+  {
+    event_name.innerHTML = "일정 없음";
+  }
+  console.log(event_name.innerHTML);
+}
+  
 prevEl.addEventListener('click', function () {
   today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
   removeCalendar();
   buildCalendar();
   resetInsert();
-  redrawLi()
+  redrawLi();
 });
   
 nextEl.addEventListener('click', function () {
@@ -98,16 +133,19 @@ nextEl.addEventListener('click', function () {
   removeCalendar();
   buildCalendar();
   resetInsert();
-  redrawLi()
+  redrawLi();
 });
 
 calendarBody.addEventListener('click', function (e) {
   let target = e.target;
   let eachDate = document.querySelectorAll('.calendar-body > #weekly > div');
-  if (e.target.innerHTML === '') return;
-  for (let i = 0; i < eachDate.length; i++) {
-    eachDate[i].classList.remove('active');
+  for (let i = 0; i < eachDate.length; i++) 
+  {
+   eachDate[i].classList.remove('active');
+   isBool = false;
   }
+  
+  isBool = true;
   target.classList.add('active');
   today = new Date(today.getFullYear(), today.getMonth(), target.innerHTML);
   currentDate = today.format();
@@ -121,19 +159,36 @@ inputBtn.addEventListener('click', function (e) {
   insertTodo(inputValue);
 });
 
+closedBtn.addEventListener('click', function(e){
+  showList.style.display = "none";
+  bgblack.style.display = "none";
+});
+  
 function insertTodo(text) {
   let todoObj = {
     todo: text,
   }
-  if (!DATA[currentDate]) {
+  
+  if (!DATA[currentDate]) 
+  {
     DATA[currentDate] = [];
     DATA[currentDate].push(todoObj);
-  } else {
+    
+    
+    
+  } 
+  
+  else 
+  {
     DATA[currentDate].push(todoObj);
+    
+    
+    
   }
   const liEl = document.createElement('li');
   const spanEl = document.createElement('span');
   const delBtn = document.createElement('button');
+  
   delBtn.innerText = "DEL";
   delBtn.setAttribute('class', 'del-data');
   spanEl.innerHTML = text;
@@ -157,7 +212,7 @@ function redrawLi() {
     if (todoList === currentDate) {
       for (let i = 0; i < DATA[todoList].length; i++) {
         const liEl2 = document.createElement('li');
-        const spanEl2 = document.createElement('span');
+        spanEl2 = document.createElement('span');
         const delBtn2 = document.createElement('button');
         delBtn2.innerText = "DEL";
         delBtn2.setAttribute('class', 'del-data');
@@ -177,10 +232,13 @@ function resetInsert() {
   let storeObj = localStorage.getItem(currentDate);
   if (storeObj !== null) {
     let liEl = document.querySelectorAll('LI');
-    for (let i = 0; i < liEl.length; i++) {
+    
+    for (let i = 0; i < liEl.length; i++)     {
       inputList.removeChild(liEl[i]);
     }
+    
     const parsed = JSON.parse(localStorage.getItem(currentDate));
+    
     parsed.forEach(function (todo) {
       if (todo) {
         let lili = document.createElement('li');
@@ -205,7 +263,7 @@ function delWork(e) {
   e.preventDefault();
   let delParentLi = e.target.parentNode;
   inputList.removeChild(delParentLi);
-  const cleanToDos = DATA[currentDate].filter(function (todo) {
+  const cleanToDos = DATA[currentDate].filter(function (todo)     {
     return todo.id !== parseInt(delParentLi.id);
   });
   DATA[currentDate] = cleanToDos;
@@ -213,13 +271,74 @@ function delWork(e) {
 }
 
 function showTodo(e){
-  showList.style.display = "block"
+  showList.style.display = "block"; 
+  bgblack.style.display = "block"; 
   listText.textContent = e.target.textContent;
   createDate.textContent = currentDate;
 }
-
-closedBtn.addEventListener('click', function(e){
-  showList.style.display = "none";
-});
-
+  
 }
+
+
+
+
+
+var inp = document.querySelector('#userName');
+var but = document.querySelector('#userButton');
+var namelist = document.querySelector('#nameList');
+    
+const wrapper = document.querySelector('.wrapper2');
+    
+    if (wrapper) {
+      wrapper.addEventListener('click', function() {
+        if (Today && isBool) {
+            Today.innerHTML = today;
+          } 
+        else {
+            console.error('.today 클래스를 가진 요소를 찾을 수 없습니다.');
+          }
+      });
+    } 
+    else {
+      console.log('.wrapper2 클래스를 가진 요소를 찾을 수 없습니다.');
+    }
+
+function del(){
+  var cla = document.querySelectorAll('.num'); 
+  for(var i = 0; i < cla.length; i++){
+    cla[i].addEventListener('click', function(){
+        console.log(this);
+        if(this.parentNode){
+          this.parentNode.remove();
+        }
+    })
+  }
+};
+
+but.addEventListener('click', function() 
+{
+    if(inp.value != null) 
+    {
+    var p = document.createElement('p');
+    namelist.appendChild(p);
+    p.textContent = inp.value;
+    var span = document.createElement('span');
+    p.appendChild(span);
+    span.textContent = ' X';
+    span.setAttribute('class', 'num');
+    inp.value ='';
+
+      var i = 0;
+      var paragraphs = document.getElementsByTagName('p');
+      var text = paragraphs[i].textContent;
+      alert(text);
+      i++;
+      if (paragraphs[i].textContent === paragraphs[i-1].textContent) {
+        alert("같애");
+      }
+      
+    inp.focus();
+    namelist.insertBefore(p, namelist.childNodes[0]);
+    }
+  del();
+});
