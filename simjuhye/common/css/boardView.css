@@ -29,7 +29,7 @@
 .board-view .comment-user .user-info {width: calc(100% - 80px); display: flex; justify-content: space-between; align-items: center; font-size: 18px; color: #01B3FF; font-weight: 700;} 
 .board-view .comment-user .user-date {font-size: 14px; color: #fff; font-weight: 300; color: #7b7b7b;}
 
-.board-view .comment-list .comment-detail {margin-bottom: 10px; padding-left: 80px; font-size: 14px; line-height: 20px; text-align: left; word-break: break-all;}
+.board-view .comment-list .comment-detail {margin: 12px 0; padding-left: 80px; font-size: 14px; line-height: 20px; text-align: left; word-break: break-all;}
 
 .board-view .reply-list {overflow: hidden;float: right; width: calc(100% - 70px); margin: 30px auto;}
 .board-view .reply-form {overflow: hidden; display: none; }
@@ -45,3 +45,46 @@
 .board-view .reply-user .user-date {font-size: 12px; color: #fff; font-weight: 300; color: #7b7b7b;}
 
 .board-view .replyItem .reply-detail {margin-bottom: 10px; padding-left: 60px; font-size: 12px; line-height: 20px; text-align: left; word-break: break-all;}
+
+
+/*--------------------------------- 모바일 --------------------------------- */
+@media screen and (max-width: 800px) { 
+    .board {margin-bottom: 12.500vw;}
+    .board .board-view {margin: 12.500vw auto 0; border-bottom: 0.250vw solid #fff;}
+    .board .board-btn {margin-top: 7.500vw;}
+
+    .board-view .view-head {margin:0 auto; padding: 5.000vw 2.500vw 3.125vw; border:solid #b6b6b6; border-width: 0.500vw 0 0.125vw; }
+    .board-view .view-head .head-type {font-size: 2.250vw;}
+    .board-view .view-head .head-title {margin-top: 2.500vw; font-size: 3.500vw;}
+    .board-view .view-head .head-info {margin-top: 4.000vw; font-size: 2.000vw;}
+
+    .board-view .veiw-body {padding: 12.500vw 6.250vw; border-bottom: 0.250vw solid #b6b6b6;}
+    .board-view .veiw-body img {max-width: 80%; margin: 0 auto 5.000vw;}
+    .board-view .veiw-body p {font-size: 2.250vw; line-height: 3.750vw;}
+
+    .board-view .view-comment {padding: 5.000vw 6.250vw;}
+    .board-view .comment-write {padding-bottom: 5.000vw; border-bottom: 0.250vw solid #7b7b7b;}
+    .board-view .comment-write span {width: 100%; margin-bottom: 2.000vw; font-size: 2.000vw; line-height: 2.125vw;}
+    .board-view .comment-write textarea {width: 100%; height: 17.500vw; padding: 2.500vw 3.750vw; font-size: 2.250vw;}
+    .board-view .view-comment .btn {margin-top: 2.500vw; font-size: 1.750vw;}
+ 
+    
+    .board-view .comment-list {margin-top: 5.000vw;}
+    .board-view .comment-list .commentItem-wrap::after {top: 7.500vw; left: 3.000vw;  width: 0.250vw; height: calc(100% - 6.250vw);  border-radius: 0.625vw;}
+    .board-view .comment-user .user-thumb { width: 6.250vw; height: 6.250vw; margin-right: 3.750vw;}
+    .board-view .comment-user .user-info {width: calc(100% - 10.000vw); font-size: 2.250vw;} 
+    .board-view .comment-user .user-date {font-size: 2.000vw;}
+
+    .board-view .comment-list .comment-detail {margin: 1.750vw 0; padding-left: 10.000vw; font-size: 2.000vw; line-height: 2.750vw;}
+
+    .board-view .reply-list {width: calc(100% - 8.750vw); margin: 3.750vw auto;}
+    .board-view .reply-form textarea {width: calc(100% - 8.750vw);height: 12.500vw; margin: 2.500vw 0 0 8.750vw; padding: 1.875vw 2.500vw; background-color: rgba(255, 255, 255, 0.3); border: 0 none; font-size: 1.750vw; resize: none;}
+
+    .board-view .reply-list .replyItem {margin-top: 1.250vw;}
+    .board-view .reply-list .replyItem-wrap::after {top: 6.250vw; left: 2.500vw;  width: 0.250vw; height: calc(100% - 6.250vw);  border-radius: 0.625vw;}
+    .board-view .reply-user .user-thumb {width: 5.000vw; height: 5.000vw; margin-right: 2.500vw; border-radius: 50%;}
+    .board-view .reply-user .user-info {width: calc(100% - 7.500vw); font-size: 2.000vw;} 
+    .board-view .reply-user .user-date {font-size: 1.750vw;}
+
+    .board-view .replyItem .reply-detail {margin-bottom: 1.250vw; padding-left: 7.500vw; font-size: 1.750vw; line-height: 2.750vw;}
+}

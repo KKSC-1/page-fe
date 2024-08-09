@@ -17,82 +17,94 @@
     <!-- wrap[S] -->
     <div id="wrap">
 
-        <!-- header [S] -->
-        <header id="header" class="header">
-            <div class="header-inner inner">
+       <!-- header [S] -->
+       <header id="header" class="header">
+        <div class="header-inner inner">
 
-                <!-- headerNotice [S] -->
-                <div class="headerNotice">
-                    <span class="notioceIcon icon">
-                        <i class="fa-solid fa-bullhorn"></i>
-                    </span>
-                    <div class="swiper noticeSwiper">
-                        <div class="swiper-wrapper">
-                          <div class="swiper-slide">공지사항입니다 일이삼사오육칠팔구십일이삼사오육칠팔구십</div>
-                          <div class="swiper-slide">공지사항입니다2 일이삼사오육칠팔구십일이삼사오육칠팔구십</div>
-                        </div>
-                        <div class="swiper-pagination"></div>
-                      </div>
-                    
+            <!-- headerNotice [S] -->
+            <div class="headerNotice">
+                <span class="notioceIcon icon">
+                    <i class="fa-solid fa-bullhorn"></i>
+                </span>
+                <div class="swiper noticeSwiper">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide">공지사항입니다 일이삼사오육칠팔구십일이삼사오육칠팔구십</div>
+                      <div class="swiper-slide">공지사항입니다2 일이삼사오육칠팔구십일이삼사오육칠팔구십</div>
+                    </div>
+                    <div class="swiper-pagination"></div>
                 </div>
-                <!-- headerNotice [E] -->
+                
+            </div>
+            <!-- headerNotice [E] -->
 
 
-                <!-- headerBody [S] -->
-                <div class="headerBody">
+             <!-- headerBody [S] -->
+             <!-- [A] 20240809 : headerBody 구조 변경 -->
+             <div class="headerBody">
+                <div class="headerBody-wrap">
                     <h1 class="logo"><a href="#">KKSC</a></h1>
                     <!-- gnb -->
-                    <div id="gnb" class="gnb">
-                        <ul>
-                            <!-- [L] :: 임시 메뉴 항목입니다.  -->
-                            <li><a href="#">동아리 소개</a></li>
-                            <li><a href="#">모집 분야</a></li>
-                            <li><a href="#">모집 안내</a></li>
-                            <li><a href="#">모집 일정</a></li>
-                            <li><a href="#">지원하기</a></li>
-                        </ul>
+                    <div class="gnb-trigger" id="gnb-trigger">
+                        <button type="button">
+                            <i class="fa-solid fa-bars icon menuIcon"></i>
+                            <i class="fa-solid fa-x icon closeIcon"></i>
+                        </button>
                     </div>
-
-                    <!-- [D] :: 확인할 메시지가 있을 경우 class on 추가 / 없을 경우 on 제거 -->
-                    <div class="alert on">
-                        <a href="#" class="alertBtn">
-                            <span class="alertIcon icon">
-                                <i class="fa-solid fa-bell"></i>
-                            </span>
-                        </a>
-
-                        <div class="alertPopup">
-                            <div class="alertItem notRead">
-                                <a href="#">
-                                    <span class="alert-title">읽지 않은 메세지 예시 UI입니다.</span>
-                                    <p class="alert-desc">메세지 내용 메세지 내용 메세지 내용 메세지 내용</p>
-                                </a>
-                            </div>
-                            <div class="alertItem">
-                                <a href="">
-                                    <span class="alert-title">읽은 메세지 예시 UI입니다.</span>
-                                    <p class="alert-desc">메세지 내용 메세지 내용 메세지 내용 메세지 내용</p>
-                                </a>
-                            </div>
-                            <div class="alertItem">
-                                <a href="">
-                                    <span class="alert-title">읽은 메세지 예시 UI입니다.</span>
-                                    <p class="alert-desc">메세지 내용 메세지 내용 메세지 내용 메세지 내용</p>
-                                </a>
-                            </div>
-                            <div class="alertItem">
-                                <a href="">
-                                    <span class="alert-title">읽은 메세지 예시 UI입니다.</span>
-                                    <p class="alert-desc">메세지 내용 메세지 내용 메세지 내용 메세지 내용</p>
-                                </a>
+                    <div class="gnb">
+                        <div id="gnb-link" class="gnb-link">
+                            <ul>
+                                <!-- [L] :: 임시 메뉴 항목입니다.  -->
+                                <li><a href="#">동아리 소개</a></li>
+                                <li><a href="#">모집 분야</a></li>
+                                <li><a href="#">모집 안내</a></li>
+                                <li><a href="#">모집 일정</a></li>
+                                <li><a href="#">지원하기</a></li>
+                            </ul>
+                        </div>
+                        
+                        <!-- [D] :: 확인할 메시지가 있을 경우 class on 추가 / 없을 경우 on 제거 -->
+                        <div class="alert on">
+                            <a href="#" class="alertBtn">
+                                <span class="alertIcon icon">
+                                    <i class="fa-solid fa-bell"></i>
+                                </span>
+                            </a>
+    
+                            <div class="alertPopup">
+                                <div class="alertItem notRead">
+                                    <a href="#">
+                                        <span class="alert-title">읽지 않은 메세지 예시 UI입니다.</span>
+                                        <p class="alert-desc">메세지 내용 메세지 내용 메세지 내용 메세지 내용</p>
+                                    </a>
+                                </div>
+                                <div class="alertItem">
+                                    <a href="">
+                                        <span class="alert-title">읽은 메세지 예시 UI입니다.</span>
+                                        <p class="alert-desc">메세지 내용 메세지 내용 메세지 내용 메세지 내용</p>
+                                    </a>
+                                </div>
+                                <div class="alertItem">
+                                    <a href="">
+                                        <span class="alert-title">읽은 메세지 예시 UI입니다.</span>
+                                        <p class="alert-desc">메세지 내용 메세지 내용 메세지 내용 메세지 내용</p>
+                                    </a>
+                                </div>
+                                <div class="alertItem">
+                                    <a href="">
+                                        <span class="alert-title">읽은 메세지 예시 UI입니다.</span>
+                                        <p class="alert-desc">메세지 내용 메세지 내용 메세지 내용 메세지 내용</p>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- headerBody [E] -->
             </div>
-        </header>
-        <!-- header [E] -->
+            <!-- [A] 20240809 : headerBody 구조 변경 -->
+            <!-- headerBody [E] -->
+        </div>
+    </header>
+    <!-- header [E] -->
 
         <!-- content [S] -->
         <main id="content">
@@ -117,8 +129,8 @@
                             <table class="tbl">
                                 <caption>KKSC 공유 게시판</caption>
                                 <colgroup>
-                                    <col style="width: 150px;">
-                                    <col style="width:500px;">
+                                    <col>
+                                    <col>
                                     <col>
                                 </colgroup>
                                 <thead>
