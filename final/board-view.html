@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- <link rel="stylesheet" href="../common/css/default.css">
+    <link rel="stylesheet" href="../common/css/layout.css">
+    <link rel="stylesheet" href="../common/css/boardView.css"> -->
+    <title>KKSC - 프로젝트 및 아이디어 공유 게시판</title>
+    
+
+    <style>
+        /* font.css */
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 100;
+  src: url(Pretendard-Thin.woff2) format("woff2"),
+    url(Pretendard-Thin.woff) format("woff"),
+    url(Pretendard-Thin.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 200;
+  src: url(Pretendard-ExtraLight.woff2) format("woff2"),
+    url(Pretendard-ExtraLight.woff) format("woff"),
+    url(Pretendard-ExtraLight.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 300;
+  src: url(Pretendard-Light.woff2) format("woff2"),
+    url(Pretendard-Light.woff) format("woff"),
+    url(Pretendard-Light.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  src: url(Pretendard-Regular.woff2) format("woff2"),
+    url(Pretendard-Regular.woff) format("woff"),
+    url(Pretendard-Regular.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  src: url(Pretendard-Medium.woff2) format("woff2"),
+    url(Pretendard-Medium.woff) format("woff"),
+    url(Pretendard-Medium.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  src: url(Pretendard-SemiBold.woff2) format("woff2"),
+    url(Pretendard-SemiBold.woff) format("woff"),
+    url(Pretendard-SemiBold.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 700;
+  src: url(Pretendard-Bold.woff2) format("woff2"),
+    url(Pretendard-Bold.woff) format("woff"),
+    url(Pretendard-Bold.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 800;
+  src: url(Pretendard-ExtraBold.woff2) format("woff2"),
+    url(Pretendard-ExtraBold.woff) format("woff"),
+    url(Pretendard-ExtraBold.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 900;
+  src: url(Pretendard-Black.woff2) format("woff2"),
+    url(Pretendard-Black.woff) format("woff"),
+    url(Pretendard-Black.otf) format("opentype");
+}
+
+
+
+
+
+/* ｂｏａｒｄ－ｆｏｒｍ.css */
+
+.board-form .board-form-inner {width: 800px; margin: auto; padding: 100px 0; text-align: center;}
+
+.board-form-table {border: solid #fff; border-width: 4px 0 1px 0; text-align: left;}
+.board-form-table tr {border-bottom: 1px solid rgba(255, 255, 255, 0.3);}
+.board-form-table th {padding: 0 26px; font-size: 15px;}
+.board-form-table td {position: relative; padding: 16px 36px;}
+.board-form-table td input{width: 100%; height: 36px;background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.3);border-radius: 5px;font-size: 14px;vertical-align: middle;padding: 0 14px;font-weight: 350;}
+.board-form-table td .select {position: relative;width: 160px;height: 36px;padding-right: 20px;border: 1px solid rgba(255, 255, 255, 0.3);border-radius: 5px;}
+.board-form-table td select {width: 100%;height: 100%;position: absolute;top: 0;left: 0;padding: 0 40px 0 12px;background-color: transparent !important;border: none;font-size: 14px;vertical-align: middle;color: #fff;}
+.board-form-table td .selectIcon {position: absolute; top: 50%; right: 15px; transform: translateY(-50%); font-size: 12px;}
+.custom-control-label {width: 20px; height: 20px; display: inline-block;position: relative;}
+.custom-control-label:after {content: ''; position: absolute;width: 20px;height: 20px;left: 50%;top: 0%;transform: translateX(-50%);background: url(/common/images/checkbox.svg) no-repeat center/10px; opacity: 0;}                                    
+.custom-control-input:checked ~ .custom-control-label::after {opacity: 1;}
+.custom-control-input:checked ~ .custom-control-label::before {border-color: #01B3FF;background-color: #01B3FF;}
+.custom-checkbox .custom-control-label:before {position: absolute;display: inline-block;content: '';width: 20px;height: 20px;left: 0;top: 50%;transform: translateY(-50%);border: 1px solid #ccc; border-radius: 2px;}
+.custom-control-input {position: absolute;left: 0;z-index: -1;width: 1rem;height: 1.25rem;opacity: 0;}
+.file-name-item {display: flex; align-items: center; margin-top: 10px; padding-left: 10px;}
+.file-name-text {margin-right: 10px;}
+.file-remove-btn {font-size: 12px;}
+
+.board-form-table td textarea{width: 100%; height: 300px; padding: 10px 14px; background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.3);border-radius: 5px; font-size: 14px; resize: none;}
+
+.write-btn {margin-top: 40px; background-color: #00b3ff; padding: 14px 40px 12px; color: #fff;}
+
+
+
+
+
+/* ｂｏａｒｄ.css */
+
+/* 게시판, 공지사항 용 - table */
+.board .write-btn {float: right; margin-bottom: 20px;}
+.board .board-tbl {width: 800px; margin: 100px auto 0; }
+.board .board-tbl .tbl-title {font-size: 20px; text-align: left;}
+.board .board-tbl .tbl {width: 800px; margin-top: 15px; border-top: 3px solid #fff; border-bottom: 2px solid #fff; box-sizing: border-box;}
+.board .board-tbl thead {border-bottom: 2px solid rgba(255, 255, 255, 0.2);}
+.board .board-tbl th,
+.board .board-tbl td {padding: 16px 0;}
+.board .board-tbl tbody {font-size: 15px;}
+.board .board-tbl td.tbl-num.notice span {display: inline-block; padding: 6px 16px 5px; border-radius: 16px; background-color: #006b99; font-size: 14px;}
+.board .board-tbl td.tbl-detail {width: 500px;}
+.board .board-tbl td.tbl-detail p {width: 500px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap;}
+.board .board-tbl td.tbl-detail p:hover {text-decoration: underline;}
+/* 게시판, 공지사항 용 - table */
+
+/* 포트폴리오 용 - card */
+.board-card {margin: 100px auto 0;}
+.board-card .card {position: relative;display: flex;flex-wrap: wrap; }
+/* 한줄에 3개 타입 */
+.board-card .card.row-3 {width: calc(100% + 20px);margin-left: -20px;}
+.board-card .card.row-3 .cardItem {width: calc((100% / 3) - 20px);margin-left: 20px;}
+/* 한줄에 3개 타입 */
+.board-card .itemTitle {position: absolute;top: 0;left: 0;padding-left: 20px;font-size: 16px;font-weight: 600;color: #4E4F51;}
+.cardItem {overflow: hidden;position: relative;height: 380px;max-height: 380px;border-radius: 26px; border: 2px solid rgba(255, 255, 255, 0.2);}
+.cardItem .card-thumb {overflow: hidden;width: 100%; height: 157px;}
+.cardItem .card-thumb img {width: 100%; height: 100%;transition: all 0.3s;}
+.cardItem:hover .card-thumb img {-webkit-transform: scale(1.1);-moz-transform: scale(1.1);-ms-transform: scale(1.1);-o-transform: scale(1.1);transform: scale(1.1);}
+
+.cardItem .card-detail {position: relative;width: 100%;height: calc(100% - 223px);padding: 24px 20px 20px; border-top: 1px solid rgba(255, 255, 255, 0.2); text-align: left;}
+.cardItem .card-detail .card-type {font-size: 14px;color: #01B3FF;font-weight: 600;letter-spacing: 0 !important;}
+.cardItem .card-detail .card-title {margin-top: 11px;font-size: 18px;font-weight: 600;}
+.cardItem .card-detail .card-desc {position: relative;margin-top: 15px;font-size: 12px;line-height: 18px;word-break: break-all; display: -webkit-box;word-wrap: break-word;-webkit-line-clamp: 3;-webkit-box-orient: vertical;text-overflow: ellipsis;overflow: hidden; opacity: 0.6;}
+
+.cardItem .btn-view {position: absolute; left: 20px; bottom: 24px; padding: 10px 20px 10px;}
+/* 포트폴리오 용 - card */
+
+
+
+
+/* ｂｏａｒｄｖｉｅｗ．ｃｓｓ */
+
+.board {margin-bottom: 100px;}
+.board .board-view {margin: 100px auto 0; border-bottom: 1px solid #fff;}
+.board .board-btn {float: left; margin-top: 60px;}
+
+.board-view .view-head {margin:0 auto; padding: 40px 20px 25px; border:solid #b6b6b6; border-width: 4px 0 1px;text-align: left; }
+.board-view .view-head .head-type {font-size: 14px; color: #01B3FF;}
+.board-view .view-head .head-title {margin-top: 16px; font-size: 24px;}
+.board-view .view-head .head-info {display: flex; justify-content:space-between; margin-top: 30px; font-size: 14px; font-weight: 400; color: #7b7b7b;}
+
+.board-view .veiw-body {padding: 100px 50px; border-bottom: 1px solid #b6b6b6;}
+.board-view .veiw-body img {display: block; max-width: 450px; margin: 0 auto 40px;}
+.board-view .veiw-body p {line-height: 28px; text-align: left; word-break: break-all;}
+
+.board-view .view-comment {padding: 40px 50px;}
+.board-view .comment-write {overflow: hidden; padding-bottom: 40px; border-bottom: 1px solid #7b7b7b;}
+.board-view .comment-write span {display: inline-block; width: 100%; margin-bottom: 14px; text-align: left; font-size: 14px; }
+.board-view .comment-write textarea {width: 100%; height: 140px; padding: 20px 30px; background-color: rgba(255, 255, 255, 0.3); border: 0 none; font-size: 14px; resize: none;}
+.board-view .view-comment .btn {float: right; margin-top: 20px;}
+
+.board-view .comment-list {margin-top: 40px;}
+.board-view .comment-list .commentItem {overflow: hidden;}
+.board-view .comment-list .commentItem-wrap {position: relative;}
+.board-view .comment-list .commentItem-wrap::after {content: ''; position: absolute; top: 60px; left: 24px;  width: 2px; height: calc(100% - 50px); background-color: #747474; border-radius: 5px;}
+.board-view .comment-list .comment-user {display: flex; align-items: center;}
+.board-view .comment-user .user-thumb {overflow: hidden; width: 50px; height: 50px; margin-right: 30px; border-radius: 50%;}
+.board-view .comment-user .user-thumb img {width: 100%; height: 100%; object-fit: fill;}
+.board-view .comment-user .user-info {width: calc(100% - 80px); display: flex; justify-content: space-between; align-items: center; font-size: 18px; color: #01B3FF; font-weight: 700;} 
+.board-view .comment-user .user-date {font-size: 14px; color: #fff; font-weight: 300; color: #7b7b7b;}
+
+.board-view .comment-list .comment-detail {margin-bottom: 10px; padding-left: 80px; font-size: 14px; line-height: 20px; text-align: left; word-break: break-all;}
+
+.board-view .reply-list {overflow: hidden;float: right; width: calc(100% - 70px); margin: 30px auto;}
+.board-view .reply-form {overflow: hidden; display: none; }
+.board-view .reply-form textarea {width: calc(100% - 70px);height: 100px; margin: 20px 0 0 70px; padding: 15px 20px; background-color: rgba(255, 255, 255, 0.3); border: 0 none; font-size: 14px; resize: none;}
+
+.board-view .reply-list .replyItem {overflow: hidden; margin-top: 10px;}
+.board-view .reply-list .replyItem-wrap {position: relative;}
+.board-view .reply-list .replyItem-wrap::after {content: ''; position: absolute; top: 50px; left: 20px;  width: 2px; height: calc(100% - 50px); background-color: #747474; border-radius: 5px;}
+.board-view .replyItem .reply-user {display: flex; align-items: center;}
+.board-view .reply-user .user-thumb {overflow: hidden; width: 40px; height: 40px; margin-right: 20px; border-radius: 50%;}
+.board-view .reply-user .user-thumb img {width: 100%; height: 100%; object-fit: fill;}
+.board-view .reply-user .user-info {width: calc(100% - 60px); display: flex; justify-content: space-between; align-items: center; font-size: 16px; color: #01B3FF; font-weight: 700;} 
+.board-view .reply-user .user-date {font-size: 12px; color: #fff; font-weight: 300; color: #7b7b7b;}
+
+.board-view .replyItem .reply-detail {margin-bottom: 10px; padding-left: 60px; font-size: 12px; line-height: 20px; text-align: left; word-break: break-all;}
+
+
+
+
+/* ｄｅｆａｕｌｔ.css */
+
+body,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,form,fieldset,p,input,textarea,i,u,em,strong,b,a,button,th,td, code {margin:0;padding:0;font-style:normal;}
+b,em {font-weight:inherit;}
+h1,h2,h3,h4,h5,h6 {font-size:inherit;}
+*,*:before,*:after {-webkit-box-sizing:border-box;box-sizing:border-box;}
+img,fieldset,iframe,button {border:0;}
+ul,li {list-style:none}
+input[type="text"],input[type="search"],input[type="tel"],input[type="password"],textarea {-webkit-appearance:none;}
+input,select,button,label,textarea {vertical-align:middle;outline:0;}
+input,textarea,button {font-size:inherit;font-family:inherit;color:inherit;line-height:inherit;}
+input[type="password"] {font-family:inherit;}
+select {font-size:inherit;color:inherit;line-height:inherit;-webkit-appearance:none;font-family:inherit;}
+input:disabled,select:disabled,button:disabled,label:disabled,a:disabled,textarea:disabled {cursor:default;}
+label,button,select,a {cursor:pointer;}
+table {border-collapse:collapse;border-spacing:0;width:100%;table-layout:fixed;}
+legend,
+caption {visibility:hidden !important;color:transparent !important;opacity:0 !important;width:0px !important;height:0px !important;font-size:0px !important;}
+a {text-decoration:none;color:inherit;outline:0;}
+a:visited {text-decoration:none;}
+a:hover,
+a:focus {text-decoration:none;}
+textarea {resize:none;line-height:1.5;}
+button {background:none;font-family:inherit;overflow:visible;text-align:inherit;font-weight:inherit;}
+u {text-decoration:none;}
+code {display:inline;color:inherit;font-size:inherit;line-height:inherit;font-family:inherit;font-weight:inherit;}
+html {-webkit-text-size-adjust:none;}
+
+body {word-break:keep-all;line-height:1;font-family:"Pretendard, Arial, sans-serif";font-weight:500;color:#fff;}
+
+
+/* 웹접근성을 위한 텍스트 숨김 처리 */
+.blind {display: block;overflow: hidden;position: absolute !important;left: -9999px;width: 1px;height: 1px;font-size: 0;line-height: 0;text-indent: -9999px;}
+/* 웹접근성을 위한 텍스트 숨김 처리 */
+
+
+#wrap {background-color: #000;}
+
+.icon {display: inline-block; margin-top: -1px;}
+
+.btn {display: inline-block; padding: 12px 20px 10px; border-radius: 40px; border: 1px solid #01B3FF; font-size: 14px; color: #01B3FF;}
+
+
+
+
+/*layout.css*/
+
+.inner {max-width: 1250px; width: 100%; height: 100%; margin: 0 auto;}
+
+/* --------------------------------- header css --------------------------------- */
+.header {z-index: 1000; position: absolute;top: 0; left: 0; width: 100%; transition: all 0.3s;}
+
+.headerNotice {display: flex; align-items: center; height: 60px; border-bottom: 1px solid rgba(255, 255, 255, 0.2);}
+.headerNotice .notioceIcon {margin-right: 20px;}
+
+.headerNotice .noticeSwiper {width: 100%;height: 100%; cursor: default;}
+.headerNotice .noticeSwiper .swiper-slide {display: flex;align-items: center; font-size: 13px;}
+
+.headerBody {display: flex; align-items: center; width: 100%; height: 80px;}
+.headerBody.fixed {position: fixed; top: 0; left: 0; padding: 0 208px;background-color: rgba(0, 0, 0, 0.2); animation:scrollU 0.5s ease both; backdrop-filter: blur(5px);}
+.headerBody.fixed:not(.scroll) {animation:scrollD 0.5s ease both;}
+
+.headerBody .logo a {display: inline-block; font-size: 34px; font-weight: bold;}
+.headerBody .gnb {display: flex; align-items: center; margin: 0 30px 0 auto;}
+.headerBody .gnb ul {display: flex; align-items: center;} 
+.headerBody .gnb ul li {font-size: 14px; font-weight: 500; color: #fff;}
+.headerBody .gnb ul li a {padding: 10px 30px;}
+
+.headerBody .alert {position: relative; display: flex; align-items: center; font-size: 26px; width: 27px; height: 100%;}
+.headerBody .alert.on::after {content: ''; position: absolute; top: 22px; right: 3px; width: 10px; height: 10px; border-radius: 50%; background-color: #01B3FF;}
+
+.alertPopup {display: none; overflow-y: auto; z-index: 99;position: absolute; top: 70px; left: 50%; width: 300px; max-height: 230px; padding: 0 15px 0 25px; background-color: #131313; border: 10px solid #131313; border-radius: 16px; transform: translate(-50%, 0);}
+.alertPopup.on {display: block;}
+.alertPopup .alertItem { padding: 10px 0; border-bottom: 1px solid #353535; color: rgba(255, 255, 255, 0.5);}
+.alertPopup .alertItem.notRead {color: #fff;}
+.alertPopup .alertItem:last-of-type {border-bottom: 0 none;}
+.alertPopup .alertItem .alert-title {position: relative;font-size: 14px; font-weight: 700;}
+.alertPopup .alertItem.notRead .alert-title::after {content: ''; position: absolute; top: 0px; right: -8px; width: 6px; height: 6px; border-radius: 50%; background-color: #01B3FF;}
+.alertPopup .alertItem .alert-desc { width: calc(100% - 10px); overflow: hidden; text-overflow: ellipsis;white-space: nowrap;margin-top: 8px; font-size: 12px; line-height: 13px; font-weight: 200;}
+
+.alertPopup::-webkit-scrollbar {width: 4px;}
+.alertPopup::-webkit-scrollbar-thumb {background: #000;
+border-radius: 10px;} 
+.alertPopup::-webkit-scrollbar-track {background: #333; border-radius: 10px;}
+/* --------------------------------- //header css --------------------------------- */
+
+#content {padding-top: 140px;}
+
+.board .board-inner {width: 800px; margin: auto; padding: 100px 0; text-align: center;}
+.board .board-title {color: #fff;}
+.board .board-title h3 {font-size: 45px; font-weight: 900;}
+.board .board-title p {margin-top: 25px; font-size: 16px;}
+
+.board .board-list {display: inline-flex; justify-content: center; margin: 50px auto 0; padding: 20px 50px; border-radius: 30px; background-color: rgba(255, 255, 255, 0.2);}
+.board .board-list li {padding: 0 30px; border-left: 1px solid #fff; font-size: 15px;}
+.board .board-list li:first-child {border-left: 0 none;}
+
+.board .tbl-pagination {margin: 30px auto 0;}
+.board .tbl-pagination ul {display: flex; justify-content: center;}
+.board .tbl-pagination ul li a {margin: 15px; font-size: 12px; color: #fff; opacity: 0.3;}
+.board .tbl-pagination ul li.on a {font-size: 15px; opacity: 1;}
+
+
+/* --------------------------------- footer css --------------------------------- */
+.footer {padding-bottom: 60px;}
+
+
+.footer .logo {font-size: 34px;}
+
+.footer .footer-content {display: flex; align-items: center; margin-top: 20px;}
+.footer .copyright {font-size: 14px; font-weight: 300; color: #fff;}
+
+/* .footer .social-list {display: flex; gap: 10px; margin-left: 50px;} */
+/* --------------------------------- //footer css --------------------------------- */
+
+
+@keyframes scrollD {
+    0% {transform: translateY(0);}
+    100% {transform:  translateY(-100%);}
+}
+
+@keyframes scrollU {
+    0% {transform: translateY(-100%);}
+    100% {transform:  translateY(0);}
+}
+    </style>
+
+
+</head>
+<body>
+    <div id="wrap">
+        <!-- header [S] -->
+        <header id="header" class="header">
+            <div class="header-inner inner">
+
+                <!-- headerNotice [S] -->
+                <div class="headerNotice">
+                    <span class="notioceIcon icon">
+                        <i class="fa-solid fa-bullhorn"></i>
+                    </span>
+                    <div class="swiper noticeSwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">KKSC 1.5기 모집 공고</div>
+                            <div class="swiper-slide">KKSC 회의록 공개 및 회비 내역 공개</div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                      </div>
+                    
+                </div>
+                <!-- headerNotice [E] -->
+
+
+                <!-- headerBody [S] -->
+                <div class="headerBody">
+                    <h1 class="logo"><a href="/page/index.html">KKSC</a></h1>
+                    <!-- gnb -->
+                    <div id="gnb" class="gnb">
+                        <ul>
+                            <!-- [L] :: 임시 메뉴 항목입니다.  -->
+                            <li><a href="/page/index.html"> 동아리 소개</a></li>
+                            <li><a href="/page/index.html">모집 분야</a></li>
+                            <li><a href="/page/calendar.html">캘린더</a></li>
+                            <li><a href="../board.html">게시판</a></li>
+                            <li><a href="/page/index.html">지원하기</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- [D] :: 확인할 메시지가 있을 경우 class on 추가 / 없을 경우 on 제거 -->
+                    <!--
+                    // [D] :: 확인할 메시지가 있을 경우 class on 추가 / 없을 경우 on 제거
+                    <div class="alert on">
+                        <a href="#" class="alertBtn">
+                            <span class="alertIcon icon">
+                                <i class="fa-solid fa-bell"></i>
+                            </span>
+                        </a>
+
+                        <div class="alertPopup">
+                            <div class="alertItem notRead">
+                                <a href="#">
+                                    <span class="alert-title">읽지 않은 메세지 예시 UI입니다.</span>
+                                    <p class="alert-desc">KKSC 1.5기 모집 공고가 등록되었습니다. </p>
+                                </a>
+                            </div>
+                            <div class="alertItem">
+                                <a href="">
+                                    <span class="alert-title">읽은 메세지 예시 UI입니다.</span>
+                                    <p class="alert-desc">KKSC 회의록 공개 및 회비 내역 공개가 등록되었습니다.</p>
+                                </a>
+                            </div>
+                            /*
+                            <div class="alertItem">
+                                <a href="">
+                                    <span class="alert-title">읽은 메세지 예시 UI입니다.</span>
+                                    <p class="alert-desc">메세지 내용 메세지 내용 메세지 내용 메세지 내용</p>
+                                </a>
+                            </div>
+                            <div class="alertItem">
+                                <a href="">
+                                    <span class="alert-title">읽은 메세지 예시 UI입니다.</span>
+                                    <p class="alert-desc">메세지 내용 메세지 내용 메세지 내용 메세지 내용</p>
+                                </a>
+                            </div>
+                        */
+                        </div>
+                    </div>
+                </div>
+            -->
+                <!-- headerBody [E] -->
+            </div>
+        </header>
+        <!-- header [E] -->
+
+        <!-- content [S] -->
+        <main id="content">
+            <section id="board" class="board">
+                <div class="board-inner">
+                    <div class="board-content">
+                        <div class="board-title">
+                            <h3>KKSC IDEA BOARD</h3>
+                            <p>자유롭게 프로젝트 및 아이디어를 공유해 보세요.</p>
+                        </div>
+                        <ul class="board-list">
+                            <li><a href="../board.html">공유 게시판</a></li>
+                            <li><!--<a href="./board-portfolio.html">-->포트폴리오</a></li>
+                            <li><a href="./board-notice.html">공지사항</a></li>
+                        </ul>
+                        <div class="board-view">
+                            <div class="view-head">
+                                <span class="head-type">공유게시판</span>
+                                <h4 class="head-title">🔥 가천대학교 프로그램 개발 동아리 KKSC에서 신규 동아리원을 모집합니다! 🔥</h4>
+                                <div class="head-info">
+                                    <span class="info-date">2024-08-07</span>
+                                    <span class="info-author">작성자 : 송민근 (PM)</span>
+                                </div>
+                            </div>
+                            <div class="veiw-body">
+                                <div class="viewInfo">
+                                    <img src="../common/images/cardImg.jpg" alt="이미지예시">
+                                    <!-- <img src="../common/images/cardImg.jpg" alt="이미지예시">
+                                    <img src="../common/images/cardImg.jpg" alt="이미지예시"> -->
+                                    <p><p>
+                                        <br><br>
+                                        🔥가천대학교 프로그램 개발 동아리 KKSC에서 신규 동아리원을 모집합니다 !🔥
+                                        <br><br>
+- 앱, 웹등 실제 프로그램을 제작해보고 싶으신 분들
+<br><br>
+- 코딩 스터디등 코딩 실력을 기르고 싶으신 분들
+<br><br>
+- 컴퓨터 관련 공모전 등 각종 수상기록을 만들고 싶으신 분들
+<br><br>
+📖모집 예상 인원
+- 30명
+<br><br>
+📖모집 대상
+<br>
+- 프로그램을 제작해보고 싶고 각종 코딩 실력을 기르고 싶은 가천대학교 재학생 및 휴학생 (글로벌 캠퍼스)
+<br><br>
+📖모집 분야
+<br>
+- 프로그램 제작
+<br>
+- 디자인 제작
+<br><br>
+📖주요 활동
+<br>
+- 프로그램 제작 & 스터디 진행 (각 부서별 조장을 중심으로 여러 가지의 프로그램을 제작)
+<br>
+- 각종 공모전 참여
+<br>
+- 실제 프로그래머들과의 미팅
+<br>
+- 각종 동아리들과의 연합 프로그램 제작
+<br>
+- 코딩 재능나눔 봉사 실시
+<br>
+- MT 등 단결활동 진행
+<br><br>
+모집 기간 : 3월 1일(금) ~ 3월 10일(일)
+<br>
+서류 발표 : 3월 11일(월)
+<br>
+면접 일정 : 3월 13일(수) ~ 3월 15일(금)
+<br>
+최종 발표 : 3월 16일(토)
+<br><br>
+신규 동아리원 설명회 및 환영회
+<br>
+- 3월 18일 월요일
+<br><br>
+🔥
+저희 KKSC 동아리에서는 기본적인 프로젝트에 참여할 수 있는 개인의 역량을 기르기 위하여 1학기동안은 조별로 활동하는 스터디 위주의 동아리 활동을 진행 할 예정입니다.
+<br>
+본격적인 프로젝트는 여름방학을 기점으로 시작 할 예정이며 여름방학동안 무료코딩재능기부 봉사 , 간단한 웹 및 앱 제작을 할 예정입니다.
+<br>
+스터디 후 본격적인 프로젝트를 할 예정이기 때문에 장기적으로 활동하실 분들의 많은 신청 부탁드리겠습니다.
+🔥
+                                        <br><br>
+                                        신청 방법
+                                        <br>
+                                        - 아래 링크를 통해 지원서를 작성해주세요.
+<br>
+구글 링크: https://forms.gle/fnHy35mXwUxg2uRK6
+                                        <br><br>
+                                        문의
+                                        <br>
+- 카카오톡 오픈채팅 : https://open.kakao.com/o/svO384cg
+                                    </p></p>
+                                </div>
+                            </div>
+                            <div class="view-comment">
+                                <div class="comment-write">
+                                    <span>댓글 작성</span>
+                                    <textarea id="comment-textarea" placeholder="댓글을 입력하세요"></textarea>
+                                    <button type="button" class="btn comment-btn">댓글 달기</button>
+                                </div>
+                                <div class="comment-list" id="comment-list">
+                                    <!-- [D] :: 댓글, 답글 표시 되는 영역 -->
+                                </div>
+                            </div>
+                        </div>
+                        <a href="../board.html" class="btn board-btn">목록</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- content [E] -->
+
+        <!-- footer [S] -->
+        <footer id="footer" class="footer">
+            <div class="footer-inner inner">
+                <h1 class="logo"><a href="#">KKSC</a></h1>
+                <div class="footer-content">
+                    <p class="copyright">© 2024 KKSC. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+        <!-- footer [E] -->
+    </div>
+    <!-- wrap -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="../common/js/ui.js"></script>
+    <script src="../common/js/board-view.js"></script>
+</body>
+
+
+
+
+
+
+<script>
+    // ui.js － 제일 윗 부분 공지사항 담당．
+    document.addEventListener("DOMContentLoaded", function() {
+      handleScrollHeader();
+      setupAlertPopup();
+      setupAnchorScrolling();
+    });
+    
+    
+    function handleScrollHeader() {
+      let isScrolling; // 스크롤 상태 플래그
+      let lastScrollTop = 0; // 마지막 스크롤 위치
+      const scrollThreshold = 5; // 스크롤 감지 임계값
+      const header = document.querySelector('.headerBody'); // 헤더 요소
+      const headerHeight = header.offsetHeight; // 헤더 높이
+      
+      window.onscroll = function() {
+          isScrolling = true;
+      };
+      
+      setInterval(function() {
+          if (isScrolling) {
+              checkScrollPosition();
+              isScrolling = false;
+          }
+      }, 250);
+      
+      function checkScrollPosition() {
+          const currentScrollTop = window.scrollY;
+          
+          if (Math.abs(lastScrollTop - currentScrollTop) <= scrollThreshold) {
+              return;
+          }
+          
+          if (currentScrollTop > lastScrollTop && currentScrollTop > headerHeight) {
+              header.classList.remove('scroll');
+          } else if (currentScrollTop <= headerHeight) {
+              header.classList.remove('fixed');
+          } else {
+              if (currentScrollTop + window.innerHeight < document.body.offsetHeight) {
+                  header.classList.add('scroll');
+                  header.classList.add('fixed');
+              }
+          }
+          
+          lastScrollTop = currentScrollTop;
+      }
+    }
+    
+    function setupAnchorScrolling() {
+      const anchorLinks = document.querySelectorAll('.alertBtn'); 
+      
+      anchorLinks.forEach(link => {
+          link.addEventListener("click", function(event) {
+              if (link.hash !== "") {
+                  event.preventDefault();
+                  
+                  const targetId = link.hash.substring(1);
+                  const targetElement = document.getElementById(targetId);
+                  
+                  if (targetElement) {
+                      smoothScrollTo(targetElement);
+                  }
+              }
+          });
+      });
+    
+      // anc 클릭시 해당 영역으로 scroll
+      function smoothScrollTo(targetElement) {
+          const startPosition = window.pageYOffset;
+          const targetPosition = targetElement.offsetTop;
+          const distance = targetPosition - startPosition;
+          const duration = 800;
+          let startTime = null;
+          
+          function animateScroll(currentTime) {
+              if (startTime === null) {
+                  startTime = currentTime;
+              }
+              
+              const elapsedTime = currentTime - startTime;
+              const scrollPosition = easeInOutCubic(elapsedTime, startPosition, distance, duration);
+              window.scrollTo(0, scrollPosition);
+              
+              if (elapsedTime < duration) {
+                  requestAnimationFrame(animateScroll);
+              } else {
+                  window.location.hash = targetElement.id;
+              }
+          }
+          
+          function easeInOutCubic(time, start, change, duration) {
+              time /= duration / 2;
+              if (time < 1) return change / 2 * time * time * time + start;
+              time -= 2;
+              return change / 2 * (time * time * time + 2) + start;
+          }
+          
+          requestAnimationFrame(animateScroll);
+      }
+    }
+    
+    // 알림 팝업 처리
+    function setupAlertPopup() {
+      let isPopupVisible = false; 
+      const alertButton = document.querySelector('.alertBtn'); 
+      const alertPopup = document.querySelector('.alertPopup');
+    
+      alertButton.addEventListener('click', function(event) {
+        event.stopPropagation();
+        if (!isPopupVisible) {
+          alertPopup.classList.add('on');
+          isPopupVisible = true;
+        }else {
+          alertPopup.classList.remove('on');
+          isPopupVisible = false;
+        }
+      });
+    
+      document.body.addEventListener('click', function(event) {
+        if (isPopupVisible && !alertPopup.contains(event.target) && !alertButton.contains(event.target)) {
+          alertPopup.classList.remove('on');
+          isPopupVisible = false;
+        }
+      });
+    
+      alertPopup.addEventListener('click', function(event) {
+        event.stopPropagation();
+      });
+    }
+    
+    // 상단 헤더 공지사항 swiper
+    var swiper = new Swiper(".noticeSwiper", {
+      direction: "vertical",
+      autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+      },
+      speed: 800,
+      loop: true,
+      touchRatio: 0
+    }); 
+    
+    
+    
+    
+    
+    // ｂｏｒａｄ－ｆｏｒｍ．ｊｓ － 
+    document.addEventListener('DOMContentLoaded', () => {
+        const fileInputs = document.querySelectorAll('.form-input-file');
+        
+        fileInputs.forEach(input => {
+            const fileListDisplay = input.closest('td').querySelector('.file-name-display');
+    
+            input.addEventListener('change', () => {
+                // Initialize an empty list for the new files
+                const fileLists = [];
+    
+                // Collect new files
+                Array.from(input.files).forEach(file => {
+                    fileLists.push(file);
+                });
+    
+                // Update the display with the new files
+                updateFileListDisplay(fileListDisplay, fileLists);
+                input.value = ''; // Reset input value to allow re-selecting the same file
+            });
+        });
+    
+        function updateFileListDisplay(fileListDisplay, fileLists) {
+            fileListDisplay.innerHTML = ''; // Clear the existing file list
+    
+            fileLists.forEach((file, index) => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-name-item';
+    
+                const fileNameText = document.createElement('span');
+                fileNameText.className = 'file-name-text';
+                fileNameText.textContent = file.name;
+    
+                const removeButton = document.createElement('button');
+                removeButton.className = 'file-remove-btn';
+                removeButton.innerHTML = `
+                    <span class="icon closeIcon">
+                        <i class="fa-solid fa-xmark"></i>    
+                    </span>
+                `;
+                removeButton.addEventListener('click', () => {
+                    fileLists.splice(index, 1);
+                    updateFileListDisplay(fileListDisplay, fileLists);
+                });
+    
+                fileItem.appendChild(fileNameText);
+                fileItem.appendChild(removeButton);
+                fileListDisplay.appendChild(fileItem);
+            });
+        }
+    });    
+    
+    
+    
+    
+    
+    // ｂｏｒａｄ－ｖｉｅｗ．ｊｓ － 
+    document.addEventListener('DOMContentLoaded', () => {
+        const commentBtn = document.querySelector('.comment-btn');
+        const commentList = document.getElementById('comment-list');
+    
+        // 댓글 작성
+        commentBtn.addEventListener('click', () => {
+            const textarea = document.getElementById('comment-textarea');
+            const text = textarea.value.trim();
+    
+            if (text) {
+                const newComment = document.createElement('div');
+                newComment.classList.add('commentItem');
+                newComment.innerHTML = `
+                    <div class="commentItem-wrap">
+                        <div class="comment-user">
+                            <div class="user-thumb"><img src="../common/images/userImg.jpg" alt=""></div>
+                            <div class="user-info">
+                                <span class="user-name">작성자</span>
+                                <span class="user-date">9999.99.99</span>
+                            </div>
+                        </div>
+                        <div class="comment-detail">
+                            <p>${text}</p>
+                        </div>
+                        <button class="btn reply-btn">답글 달기</button>
+                        <div class="reply-form">
+                            <textarea placeholder="답글을 입력하세요."></textarea>
+                            <button class="btn reply-submit">답글 달기</button>
+                        </div>
+                    </div>
+                    <div class="reply-list"></div>
+                `;
+                commentList.appendChild(newComment);
+                textarea.value = ''; // 텍스트 영역 비우기
+            } else {
+                alert('댓글 내용을 입력해 주세요.');
+            }
+        });
+    
+        // 댓글 목록 클릭 처리
+        commentList.addEventListener('click', (event) => {
+            if (event.target.classList.contains('reply-btn')) {
+                const commentItem = event.target.closest('.commentItem');
+                const replyForm = commentItem.querySelector('.reply-form');
+                const replyBtn = commentItem.querySelector('.reply-btn');
+                
+                // 답글 폼 보이기
+                replyForm.style.display = 'block';
+                replyBtn.style.display = 'none';
+            } else if (event.target.classList.contains('reply-submit')) {
+                const replyForm = event.target.closest('.reply-form');
+                const replyTextarea = replyForm.querySelector('textarea');
+                const replyText = replyTextarea.value.trim();
+    
+                if (replyText) {
+                    const newReply = document.createElement('div');
+                    newReply.classList.add('replyItem');
+                    newReply.innerHTML = `
+                        <div class="replyItem-wrap">
+                            <div class="reply-user">
+                                <div class="user-thumb"><img src="/common/images/userImg.png" alt=""></div>
+                                <div class="user-info">
+                                    <span class="user-name">작성자</span>
+                                    <span class="user-date">9999.99.99</span>
+                                </div>
+                            </div>
+                            <div class="reply-detail">
+                                <p>${replyText}</p>
+                            </div>
+                        </div>
+                    `;
+                    // 댓글의 `.reply-list`를 찾기 위해 `.commentItem`에서 찾기
+                    const replyList = replyForm.closest('.commentItem').querySelector('.reply-list');
+                    replyList.appendChild(newReply);
+                    replyTextarea.value = ''; // 텍스트 영역 비우기
+                    
+                    // 답글 작성 후 답글 달기 버튼 다시 보이기
+                    replyForm.style.display = 'none';
+                    replyForm.closest('.commentItem').querySelector('.reply-btn').style.display = 'block';
+                } else {
+                    alert('답글 내용을 입력해 주세요.');
+                }
+            }
+        });
+    });
+    </script>
+
+
+
+
+
+
+</html>
