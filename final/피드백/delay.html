@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./fonts/font.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <title>KKSC</title>
+  <style>
+    @charset "utf-8";
+
+#wrap {overflow: hidden; background-color: #000;}
+
+
+/* --------------------------------- section notice css --------------------------------- */
+#notice.section .section_inner {padding: 100px 0; text-align: center;}
+#notice.section .notice_title {color: #fff;}
+#notice.section .notice_title h3 {font-size: 45px; font-weight: 900;}
+#notice.section .notice_title p {height:627px; margin-top: 100px; font-size: 16px;}
+
+/* --------------------------------- section notice css --------------------------------- */
+
+
+  </style>
+</head>
+
+<body>
+  <!-- wrap -->
+  <div id="wrap">
+    <!-- content [S] -->
+    <main id="content">
+      <!-- notice [S] -->
+      <section id="notice" class="section">
+        <div class="section_inner">
+          <div class="notice_content">
+            <div class="notice_title">
+              <h3>서비스 준비 중입니다.</h3>
+              <p>이용에 불편을 드려 죄송합니다.<br>
+                보다 나은 서비스 제공을 위하여 페이지 준비 중에 있습니다.<br>
+                빠른 시일 내에 준비하여 찾아뵙겠습니다.
+              </p>
+            </div>
+            
+            <button onclick="goToLink()" class="input_btn">돌아가기</button>
+            
+            <style>
+              .input_btn {
+                display: block;
+                margin: 80px auto 0;
+                width: 430px;
+                height: 80px;
+                border-radius: 40px;
+                border: none;
+                background-color: #01B3FF;
+                font-size: 25px;
+                font-weight: bold;
+                color: #fff;
+              }
+            </style>
+            
+            <script>
+              function goToLink() {
+                // 여기에 이동할 URL을 지정합니다.
+                window.location.href = 'index.html'; // '다른페이지.html' 부분을 실제로 이동할 페이지 경로로 변경하세요.
+              }
+            </script>
+            <!--
+            <ul class="notice_list">
+              <li><a href="#">공지사항</a></li>
+              <li><a href="#">갤러리</a></li>
+              <li><a href="#">1:1 문의</a></li>
+            </ul>
+
+            <div class="notice_tbl">
+              <h4 class="tbl_title">공지사항</h4>
+              <table class="tbl">
+                <caption>KKSC 공지사항</caption>
+                <colgroup>
+                  <col style="width: 150px;">
+                  <col style="width:500px;">
+                  <col>
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>등록일</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="tbl_num notice"><span>공지</span></td>
+                    <td class="tbl_detail"><p><a href="#">일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십</a></p></td>
+                    <td class="tbl_date"><span>2024.06.16</span></td>
+                  </tr>
+                  <tr>
+                    <td class="tbl_num"><span>1</span></td>
+                    <td class="tbl_detail"><p><a href="#">일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십</a></p></td>
+                    <td class="tbl_date"><span>2024.06.16</span></td>
+                  </tr>
+                  <tr>
+                    <td class="tbl_num"><span>2</span></td>
+                    <td class="tbl_detail"><p><a href="#">일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십</a></p></td>
+                    <td class="tbl_date"><span>2024.06.16</span></td>
+                  </tr>
+                  <tr>
+                    <td class="tbl_num"><span>3</span></td>
+                    <td class="tbl_detail"><p><a href="#">일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십</a></p></td>
+                    <td class="tbl_date"><span>2024.06.16</span></td>
+                  </tr>
+                  <tr>
+                    <td class="tbl_num"><span>4</span></td>
+                    <td class="tbl_detail"><p><a href="#">일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십</a></p></td>
+                    <td class="tbl_date"><span>2024.06.16</span></td>
+                  </tr>
+                  <tr>
+                    <td class="tbl_num"><span>5</span></td>
+                    <td class="tbl_detail"><p><a href="#">일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십일이삼사오육칠팔구십</a></p></td>
+                    <td class="tbl_date"><span>2024.06.16</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            
+              <div class="tbl_pagination">
+                <ul>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li class="active"><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                </ul>
+            </div>
+            </div>
+          -->
+          </div>
+        </div>
+      </section>
+      <!-- notice [E] -->
+    </main>
+     <!-- content [E] -->
+  </div>
+  <!-- //wrap -->
+
+  <script src="./js/common.js"></script>
+</body>
+
+</html>
