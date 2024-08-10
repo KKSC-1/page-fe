@@ -38,7 +38,7 @@
 /* 포트폴리오 용 - card */
 
 /*--------------------------------- 모바일 --------------------------------- */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 880px) {
     .board .write-btn {margin-bottom: 2.500vw;}
 
     .board .board-tbl {width: calc(100% - 7.500vw); margin: 12.500vw auto 0;}

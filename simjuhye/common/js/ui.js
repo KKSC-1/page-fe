@@ -59,7 +59,7 @@ function handleScrollHeader() {
 }
 
 function setupAnchorScrolling() {
-  const anchorLinks = document.querySelectorAll('.alertBtn');
+  const anchorLinks = document.querySelectorAll('.anchorLinks');
 
   anchorLinks.forEach(link => {
     link.addEventListener("click", function (event) {

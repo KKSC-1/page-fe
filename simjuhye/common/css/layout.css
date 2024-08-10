@@ -70,7 +70,8 @@ border-radius: 10px;}
 /* --------------------------------- //footer css --------------------------------- */
 
 /*--------------------------------- 모바일 --------------------------------- */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 880px) {
+    .pc {display: none;}
     body.no-scroll {overflow: hidden;}
     .btn { padding: 1.500vw 2.500vw 1.250vw; border-radius: 5.000vw; border: 0.250vw solid #01B3FF; font-size: 2.250vw;}
 

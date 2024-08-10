@@ -48,7 +48,7 @@
 
 
 /*--------------------------------- 모바일 --------------------------------- */
-@media screen and (max-width: 800px) { 
+@media screen and (max-width: 880px) { 
     .board {margin-bottom: 12.500vw;}
     .board .board-view {margin: 12.500vw auto 0; border-bottom: 0.250vw solid #fff;}
     .board .board-btn {margin-top: 7.500vw;}

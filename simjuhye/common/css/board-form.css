@@ -25,7 +25,7 @@
 .write-btn {margin-top: 40px; background-color: #00b3ff; padding: 14px 40px 12px; color: #fff;}
 
 /*--------------------------------- 모바일 --------------------------------- */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 880px) {
     .board-form .board-form-inner {width: calc(100% - 7.500vw); margin: 12.500vw auto 0; padding: 0 0 10.000vw;}
 
     .board-form-table {border: solid #fff; border-width: 0.625vw 0 0.250vw 0;}
