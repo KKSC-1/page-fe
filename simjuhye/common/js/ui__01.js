@@ -4,7 +4,6 @@ let alertPopup;
 document.addEventListener("DOMContentLoaded", function () {
   handleGnb();
   handleScrollHeader();
-  setupAlertPopup();
   setupAnchorScrolling();
 });
 
@@ -132,35 +131,6 @@ function setupAnchorScrolling() {
 
     requestAnimationFrame(animateScroll);
   }
-}
-
-// 알림 팝업 처리
-function setupAlertPopup() {
-  const alertButton = document.querySelector('.alertBtn');
-  alertPopup = document.querySelector('.alertPopup');
-  
-  alertButton.addEventListener('click', function (event) {
-    event.preventDefault();
-    
-    if (!isPopupVisible) {
-      alertPopup.classList.add('on');
-      isPopupVisible = true;
-    } else {
-      alertPopup.classList.remove('on');
-      isPopupVisible = false;
-    }
-  });
-
-  if (window.innerWidth > 800) {
-    document.body.addEventListener('click', function (event) {
-      event.preventDefault();
-      if (isPopupVisible && !alertPopup.contains(event.target) && !alertButton.contains(event.target)) {
-        alertPopup.classList.remove('on');
-        isPopupVisible = false;
-      }
-    });
-  }
-
 }
 
 

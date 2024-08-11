@@ -4,8 +4,8 @@ let alertPopup;
 document.addEventListener("DOMContentLoaded", function () {
   handleGnb();
   handleScrollHeader();
-  setupAlertPopup();
   setupAnchorScrolling();
+  handleModal()
 });
 
 function handleGnb() {
@@ -134,33 +134,32 @@ function setupAnchorScrolling() {
   }
 }
 
-// 알림 팝업 처리
-function setupAlertPopup() {
-  const alertButton = document.querySelector('.alertBtn');
-  alertPopup = document.querySelector('.alertPopup');
-  
-  alertButton.addEventListener('click', function (event) {
-    event.preventDefault();
-    
-    if (!isPopupVisible) {
-      alertPopup.classList.add('on');
-      isPopupVisible = true;
-    } else {
-      alertPopup.classList.remove('on');
-      isPopupVisible = false;
-    }
-  });
 
-  if (window.innerWidth > 800) {
-    document.body.addEventListener('click', function (event) {
-      event.preventDefault();
-      if (isPopupVisible && !alertPopup.contains(event.target) && !alertButton.contains(event.target)) {
-        alertPopup.classList.remove('on');
-        isPopupVisible = false;
-      }
-    });
-  }
+function handleModal(){
+  const langBtn = document.querySelectorAll('.popupBtn'); 
+  const modal = document.querySelector('.modal')
+  const modalFilter = modal.querySelector('.modal .filter')
+  const modalClose = modal.querySelector('.close_btn');
 
+  langBtn.forEach(link => {
+    link.addEventListener('click', function(e){
+    e.preventDefault();
+    modal.classList.add('show-modal');
+    document.body.style.overflow = "hidden";
+  })
+
+  modalClose.addEventListener('click', function(e){
+    e.preventDefault();
+    modal.classList.remove('show-modal');
+    document.body.style.overflow = "auto";
+  })
+
+  modalFilter.addEventListener('click', function(e){
+    e.preventDefault();
+    modal.classList.remove('show-modal');
+    document.body.style.overflow = "auto";
+})
+  })
 }
 
 
