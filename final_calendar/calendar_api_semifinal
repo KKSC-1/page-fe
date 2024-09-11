@@ -1,0 +1,1908 @@
+<!-- 찹가신청, 일정 등록 등 모든 기능 활성화 (PM만 사용 가능) -->
+<!-- 기본 캘린더 -->
+<!-- 미완성 -->
+
+<!DOCTYPE html>
+<html lang="ko" ng-app="mySuperApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+  
+  <!-- prev, next icon -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
+  <!-- title font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Archivo+Black&family=Bebas+Neue&display=swap" rel="stylesheet">
+  
+  <!-- calendar font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Archivo+Black&family=Bebas+Neue&family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  
+  <!-- todolist_font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Archivo+Black&family=Bebas+Neue&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Nanum+Gothic:wght@400;700;800&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+  
+  <!-- todolist_font_ko -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+  
+
+  <style>
+  #menu-list 
+    {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      background-color: #000;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border: 1px solid #000;
+      transform:translate(-100px);
+      gap:20px;
+    }
+  
+    .menu-item {
+      padding: 10px;
+    }
+  
+    .menu-item a {
+      text-decoration: none; 
+      color: #fff;
+      display: block;
+      
+    }
+
+  #wrapper2 {
+  text-align: center;
+  position:relative;
+  top:-25px;
+  }
+  
+  .num 
+  {
+  cursor: pointer;
+  color: red;
+  margin-left: 10px;
+  }
+  
+  .Button 
+  {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    padding: 5px 10px;
+    border: 1px solid #aaa;
+    background-color: pink;
+    color: #666;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .overlay 
+  {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.5);
+    transition: opacity 200ms;
+    visibility: hidden;
+    opacity: 0;
+  
+  .cancel 
+  {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+  }
+  
+  &:target 
+  {
+    visibility: visible;
+    opacity: 1;
+  }
+  }
+  
+  .popup {
+    margin: 75px auto;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #666;
+    width: 200px;
+    top:0px;
+    transform:translate(-10px);
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    position: relative;
+  
+  h2 {
+    margin-top: 0;
+    color: #666;
+    font-family: "Trebuchet MS", Tahoma, Arial, sans-serif;
+    font-size : 28px; 
+  }
+  
+  .close {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 20px;
+    right: 20px;
+    opacity: 0.8;
+    transition: all 200ms;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #666;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  }
+  
+  .nanum-gothic-regular {
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  }
+  
+  .nanum-gothic-bold {
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  }
+  
+  .nanum-gothic-extrabold {
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  }
+  
+  .archivo-black-regular {
+  font-family: "Archivo Black", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  }
+  
+  .inter-tight {
+  font-family: "Inter Tight", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  }
+
+  body 
+  {
+  max-width : 1920px;
+  max-height : 960px;
+  margin:0;
+    padding:0;
+    font-family: 'Roboto', sans-serif;
+  background-color:black;
+  
+  }
+  
+  h1, h2, h3, h4, h5, h6, div, p, dl, dt, dd, ul, ol, li, form, fieldset, blockquote, address, table, thead, tbody, tfoot, tr, td, caption 
+  {
+    margin:0;
+    padding:0;
+  list-style:none;
+  }
+  
+  
+  
+  .input-btn 
+  {
+  width: 70px;
+  height: 35px;
+  border: none;
+  border-radius: 10%;
+  font-family: "Inter Tight", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  margin-right: 30px;
+  cursor:pointer;
+  background: rgb(255, 255, 255); 
+  }
+
+  .input-btn-name
+  {
+  width: 70px;
+  height: 35px;
+  border: none;
+  border-radius: 10%;
+  visibility: visible;
+  font-family: "Inter Tight", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  margin-right: 30px;
+  cursor:pointer;
+  background: rgb(80, 255, 255); 
+  }
+  
+  header 
+  {
+  display: flex;
+  height: 5%; 
+  box-sizing: border-box;
+  padding: 30px;
+  }
+  
+  header > h1 
+  {
+  display: inline-block;
+  height: 100%;
+  transform:translate(10px);
+  flex-grow: 1;
+  }
+  
+  header > h1 > span 
+  {
+  font-family: "Archivo Black", sans-serif;
+  font-size : 32px;
+  font-weight: 400; 
+  color: #a7a7a7; 
+  vertical-align: center;
+  }
+  
+  .calendar_title 
+  {
+  margin: 0 auto; 
+  flex-grow: 0;
+  }
+  
+  .calendar_title .prev , .next
+  {
+  width: 30px;
+  height: 100%;
+  border: none;
+  font-size: 20px;
+  background-color:black;
+  color: #5c5c5c;
+  outline: none;
+  cursor: pointer;
+  }
+  
+  .calendar_title .current-year-month 
+  {
+  display: inline-block;
+  font-family: "Archivo Black", sans-serif;
+  font-size: 24px;
+  margin: 0 20px;
+  color: rgb(255, 255, 255);
+  }
+  
+  .content-left 
+  {
+  width: 20%;
+  float: right;
+  background-color:black;
+  }
+  
+  .left-main 
+  {
+  margin-top: 10%;
+  }
+  
+  .left-main .main-wrap 
+  {
+  text-align: center;
+  font-weight: 700;
+  }
+  
+  .left-main .todo-wrap 
+  {
+  padding: 20% 0 10% 10%;
+  }
+  
+  .left-main .todo-wrap .todo-title 
+  {
+  font-family: "Archivo Black", sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 10%;
+  color: #5c5c5c;
+  }
+  
+  .left-main .todo-wrap .input-form .input-box 
+  {
+  width: 90%;
+  height: 40px;
+  border: 0;
+  border-bottom: 2px solid rgb(255, 255, 255);
+  font-size: 20px;
+  margin-bottom: 30px;
+  background-color:#000;
+  color: white;
+  outline-style: none;
+  }
+
+  .left-main .todo-wrap .input-form .input-box-name
+  {
+  width: 90%;
+  height: 40px;
+  border: 0;
+  border-bottom: 2px solid rgb(255, 255, 255);
+  font-size: 20px;
+  margin-bottom: 30px;
+  background-color:#000;
+  color: lightcoral;
+  outline-style: none;
+  }
+
+  .left-main .todo-wrap .input-form .backend {
+    color:white;
+  }
+  
+  .content-right 
+  {
+  float: left; 
+  width: 80%;
+  }
+  
+  .content-right .day-of-week 
+  {
+  background: rgb(255, 255, 255);
+  width: 100%;
+  height: 100%;
+  transform:translate(-20px);
+  font-family: "Inter Tight", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  }
+  
+  .content-right .day-of-week .dayHeader 
+  {
+    transform:translate(-10px);
+    padding: 10px;
+    text-align: center;
+    flex: 1;
+    margin: 10 5px;
+  }
+  
+  .content-right .day-of-week .dayHeader:first-child
+  {
+    margin-left: 0;
+  }
+  
+  .content-right .day-of-week .dayHeader:last-child 
+  {
+    margin-right: 0;
+  }
+  
+  .content-right .day-of-week .dayHeader.sun 
+  {
+  color: #f02f2f;
+  }
+  
+  .content-right .day-of-week .dayHeader.sat 
+  {
+  color: #2208e7;
+  }
+  
+  #weekly > div 
+  {
+  font-family: "Inter Tight", sans-serif;
+  box-sizing: border-box;
+  text-align: center;
+  width: calc(100% / 7);
+  height: 130px;
+  display: inline-block;
+  border-bottom: 1px solid #e4e4e4;
+  vertical-align: top;
+  padding: 1%;
+  color: rgb(255, 255, 255);
+  overflow-y: auto;
+  }
+  
+  #weekly > div.active 
+  {
+  background: blue;
+  }
+  
+  #weekly > div + div
+  {
+  border-left: 1px solid #e4e4e4;
+  }
+  
+  .calendar-body #weekly > div:first-child 
+  {
+  border-left: 1px solid #e4e4e4;
+  }
+  
+  .calendar-body #weekly > div:last-child 
+  {
+  border-right: 1px solid #e4e4e4;
+  }
+  
+  .todoList 
+  {
+  margin-top: 10%;
+  font-size: 20px;
+  cursor:pointer;
+  }
+  
+  .todoList > li 
+  {
+  position: relative; 
+  color:white;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  }
+  
+  .todoList > li > span
+  {
+  white-space: nowrap;
+  width: 70%;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+  }
+  
+  .todoList > li+li {
+  margin-top: 5%;
+  }
+  
+  .todoList > li > .del-data
+  {
+  position: absolute;
+  top: 0; right: 5%;
+  width: 20%;
+  height: 25px;
+  background: none;
+  border: none;
+  font-size: 0px;
+  }
+  
+  .todoList > li > .del-data::after, .todoList > li > .del-data::before
+  {
+  content: '';
+  position: absolute;
+  top : 0; 
+  left: 50%;
+  display: block;
+  width: 4px;
+  height: 18px;
+  background: rgb(255, 82, 195);
+  }
+  
+  .todoList > li > .del-data::after, .closed::after 
+  {
+  transform: rotate(45deg);
+  }
+  
+  .todoList > li > .del-data::before, .closed::before
+  {
+  transform: rotate(-45deg);
+  }
+  
+  .showList 
+  {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(255, 38, 179);
+  width: 400px;
+  height: 300px;
+  z-index: 1;
+  border-radius: 20px;
+  overflow: hidden;
+  }
+  
+  .closed {
+  position: absolute;
+  top: 5%; right: 5%; 
+  width: 40px; 
+  height: 40px;
+  font-size: 0;
+  background: none;
+  border: none;
+  }
+  
+  .closed::after, .closed::before {
+  content: '';
+  position: absolute;
+  top: 14%; right: 44%;
+  width: 3px;
+  height: 25px;
+  background: #fff;
+  }
+  
+  .listText 
+  {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  word-break:break-all;
+  width: 70%;
+  font-size: 20px;
+  color: #fff;
+  }
+  
+  .createDate {
+  position: absolute;
+  bottom: 7%;
+  right: 7%;
+  font-size: 20px;
+  color: #e4e4e4;
+  }
+  
+  .bgblack {
+  display: none;
+  background: #acacac;
+  opacity: 0.6;
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  }
+  
+  @media (max-width: 1000px) {
+  body {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+  
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  header > h1 {
+    margin-bottom: 20px;
+  }
+  
+  .calendar_title {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .content-left {
+    width: 100%;
+    float: none;
+    margin-bottom: 20px;
+  }
+  
+  .content-right {
+    width: 100%;
+    float: none;
+  }
+  
+  .day-of-week {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .dayHeader {
+    width: 100%;
+    margin: 5px 0;
+  }
+  
+  #weekly > div {
+    width: calc(100%/7);
+    margin-bottom: 5px;
+    color:white;
+  }
+  
+  .prev 
+  {
+    transform: translate(-100px);
+  }
+  
+  .next 
+  {
+    transform: translate(-10px);
+  }
+  }
+  
+  .Popup {
+  position: fixed;
+  padding: 10px;
+  max-width: 500px;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, .9);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .5s, visibility 0s linear .5s;
+  z-index: 1;
+  }
+
+  .Popup.show {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+  }
+
+  .Popup-close {
+  position: absolute;
+  padding: 10px;
+  max-width: 500px;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, .9);
+  }
+
+  .Popup .close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  padding: 5px;
+  color: #000;
+  transition: color .3s;
+  font-size: 2em;
+  line-height: .6em;
+  font-weight: bold;
+  }
+  
+  .Popup .close:hover {
+  color: #00E5EE;
+  }
+
+  .close-popup {
+  background: rgba(0, 0, 0, .7);
+  cursor: default;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .5s, visibility 0s linear .5s;
+  }
+
+  .close-popup.show {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+  }
+  </style>
+
+
+</head>
+  
+<body>
+<div id = "wrap_calendar" class = wrap_calendar>
+<header>
+  <h1>
+    <span>KKSC_Calendar</span>
+  </h1>
+
+  <div id="menu-list" class="menu-list">
+    <div id="menu-item-1" class="menu-item">
+      <a href="/page/index.html"> 
+        동아리 소개
+      </a> 
+    </div>
+    <div id="menu-item-2" class="menu-item"><a href="/page/index.html">모집 분야</a></div>
+    <div id="menu-item-3" class="menu-item"><a href="/page/calendar.html">캘린더</a></div>
+    <div id="menu-item-4" class="menu-item"><a href="../board.html">게시판</a></div>
+    <div id="menu-item-5" class="menu-item"><a href="/page/index.html">지원하기</a></div>
+  </div>
+
+  <div class="calendar_title">
+    <button class="prev"
+            style = >
+      <span class="material-symbols-outlined">
+        arrow_back
+      </span>
+
+    </button>
+    
+    <span class="current-year-month">
+      
+    </span>
+    
+    <button class="next"
+            style = >
+      <span class="material-symbols-outlined">
+        arrow_forward
+      </span>
+    </button>
+  </div>
+</header>
+
+<section class="content-left">
+  <div class="left-main">
+    <div class="main-wrap">
+
+    </div>
+    
+    <div class="todo-wrap">
+      <div class="todo-title">
+        Work of KKSC
+      </div>
+      
+      <form class="input-form">
+        <input type="text" placeholder="" class="input-box" />
+        <button type="submit" class="input-btn">
+          INPUT
+        </button>
+        
+        <input type="text" placeholder="Enter name" class="input-box-name" />
+        <button type="submit" class="input-btn-name">
+          INPUT_name
+        </button>
+
+        <input type="text" placeholder="Enter ID" class="input-box-id" />
+        <button type="submit" class="input-btn-id">
+          INPUT_ID
+        </button>
+
+        <input type="text" placeholder="Enter password" class="input-box-password" />
+        <button type="submit" class="input-btn-password">
+          INPUT_password
+        </button>
+
+      <!--
+        <input type="text" placeholder="Enter username" class="input-box-username" />
+        <button type="submit" class="input-btn-nickname">
+          INPUT_password
+        </button>
+      -->
+
+        <input type="text" placeholder="Enter studentid" class="input-box-studentid" />
+        <button type="submit" class="input-btn-studentid">
+          INPUT_studentid
+        </button>
+
+        <input type="text" placeholder="Enter nickname" class="input-box-nickname" />
+        <button type="submit" class="input-btn-nickname">
+          INPUT_nickname
+        </button>
+
+        <div class = "backend">
+          None
+        </div>
+
+        <div class="popup">
+		      <h2>
+            Event Registration
+          </h2>
+		      <a class="close" href="#">
+            &times;
+          </a>
+		      <div class="content">
+            <div class = "event_name">
+            Event name : 
+            </div>
+            
+            <div class = "today">
+              today : 
+              <br>
+            </div>
+	          <input type="text" id="userName" placeholder="Enter name">
+            <input type="text" id="ID" placeholder="Enter INDEX">
+            <button id="userButton">
+              Add
+            </button>
+            <div id="nameList">
+      
+            </div>
+		      </div>
+	      </div>
+      </form>
+      
+      <ul class="todoList">
+        
+      </ul>
+      
+      <div class="showList">
+        <span class="listText"></span>
+        <span class="createDate"></span>
+        <button class="closed">close</button>
+      </div>
+      <div class="bgblack"></div>
+    </div>
+    </div>
+  </div>
+</section>
+  
+<section class="content-right">
+    <div class="day-of-week">
+      <div class="dayHeader sun">
+        Sun
+      </div>
+      <div class="dayHeader">
+        Mon
+      </div>
+      <div class="dayHeader">
+        Tue
+      </div>
+      <div class="dayHeader">
+        Wed
+      </div>
+      <div class="dayHeader">
+        Thu
+      </div>
+      <div class="dayHeader">
+        Fri
+      </div>
+      <div class="dayHeader sat">
+        Sat
+      </div>
+    </div>
+    
+    <div class="calendar-body">
+      
+    </div>
+</section>
+</div> 
+<script>
+var isClick;
+var isRegister = true;
+let today = new Date();
+var spanEl2;
+let currentDate;
+var id;
+
+var P_TEXT;
+var P_TEXT_NAME;
+
+let inputValue;
+var EVENT;
+var NAME;
+var ID;
+var PASSWORD;
+var NICKNAME;
+var STUDENTID;
+
+const wrapper = document.querySelector('.wrapper2');
+const innerLink = document.querySelector('#wrapper2 > .wrapper2 > a > a.Button');
+const event_name = document.querySelector('.event_name');
+const Today = document.querySelector('.today');
+
+localStorage.clear();
+
+let DATA = {
+
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (DATA['2024-08-19']) {
+    alert('2024-08-19의 일정: ' + DATA['2024-08-19'].map(item => item.todo).join(', '));
+  }
+});
+
+Date.prototype.format = function () {
+var yyyy = this.getFullYear();
+var month = (this.getMonth() + 1);
+var dd = this.getDate();
+var format = [yyyy, month, dd].join('-');
+return format;
+}
+
+Date.prototype.format2 = function () {
+var yyyy = this.getFullYear();
+var month = (this.getMonth() + 1);
+var format = [yyyy, month].join('-');
+return format;
+}
+
+window.onload = function () {
+var isPM = 0; 
+  const calendarBody = document.querySelector('.calendar-body');
+const prevEl = document.querySelector('.prev');
+const nextEl = document.querySelector('.next');
+const inputBox = document.querySelector('.input-box');
+const inputBoxName = document.querySelector('.input-box-name');
+const inputBoxID = document.querySelector('.input-box-id');
+const inputBoxPassword = document.querySelector('.input-box-password');
+const inputBoxStudentID = document.querySelector('.input-box-studentid');
+const inputBoxNickName = document.querySelector('.input-box-nickname');
+
+const inputBtn = document.querySelector('.input-btn');
+const inputBtnName = document.querySelector('.input-btn-name');
+const inputBtnID = document.querySelector('.input-btn-id');
+const inputBtnPassword = document.querySelector('.input-btn-password');
+const inputBtnStudentID = document.querySelector('.input-btn-studentid');
+const inputBtnNickName = document.querySelector('.input-btn-nickname');
+
+const backend = document.querySelector('.backend');
+
+const inputList = document.querySelector('.todoList');
+const showList = document.querySelector('.showList');
+const listText = document.querySelector('.listText');
+const createDate = document.querySelector('.createDate');
+const bgblack = document.querySelector('.bgblack');
+const closedBtn = document.querySelector('.closed');
+setInterval(updateCalendar, 5000);
+
+
+
+
+
+function setDefaultTodosForDate(date) {
+    const defaultTodos = [
+        { id: 1, todo: "KKSC 대면 회의" }
+    ];
+
+    // DATA 객체에 기본 할 일 목록 추가
+    DATA[date] = defaultTodos;
+
+    // 로컬 스토리지에 저장
+    localStorage.setItem(date, JSON.stringify(DATA[date]));
+
+    // UI 업데이트
+    // updateUI();
+}
+
+function setDefaultTodosForDate2(date) {
+    const defaultTodos = [
+        { id: 1, todo: "KKSC 비대면 회의" }
+    ];
+
+    // DATA 객체에 기본 할 일 목록 추가
+    DATA[date] = defaultTodos;
+
+    // 로컬 스토리지에 저장
+    localStorage.setItem(date, JSON.stringify(DATA[date]));
+
+    // UI 업데이트
+    // updateUI();
+}
+
+buildCalendar();
+defaultState();
+function buildCalendar() {
+let firstDate = new Date(today.getFullYear(), today.getMonth(), 1);
+const monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const leapYear = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+const notLeapYear = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+const headerYear = document.querySelector('.current-year-month');
+
+if (firstDate.getFullYear() % 4 === 0) {
+  pageYear = leapYear;
+} 
+
+else {
+  pageYear = notLeapYear;
+}
+
+headerYear.innerHTML = `${monthList[firstDate.getMonth()]}&nbsp;&nbsp;&nbsp;&nbsp;${today.getFullYear()}`;
+makeElement(firstDate);
+currentDate = today.format();
+resetInsert();
+}
+
+function makeElement(firstDate) {
+let weekly = 100;
+let dateSet = 1;
+for (let i = 0; i < 5; i++) {
+  let weeklyEl = document.createElement('div');
+  weeklyEl.setAttribute('class', weekly);
+  weeklyEl.setAttribute('id', "weekly");
+  for (let j = 0; j < 7; j++) 
+  {
+    if (i === 0 && j < firstDate.getDay() || dateSet > pageYear[firstDate.getMonth()]) 
+    {
+      let dateEl = document.createElement('div');
+      weeklyEl.appendChild(dateEl);
+    } 
+    
+    else 
+    {
+      let dateEl = document.createElement('div');
+      dateEl.textContent = dateSet;
+      dateEl.setAttribute('class', dateSet);
+      dateEl.setAttribute('id', `${today.format2()}-${dateSet}`);
+      weeklyEl.appendChild(dateEl);
+      dateSet++;
+    }
+  }
+  weekly++; calendarBody.appendChild(weeklyEl);
+}
+}
+
+function removeCalendar() {
+let divEls = document.querySelectorAll('.calendar-body > #weekly > div');
+for (let i = 0; i < divEls.length; i++)   {
+  divEls[i].remove();
+}
+}
+function UPdateCalendar() {
+
+alert("수행");
+let event_name = document.querySelector('.event_name'); 
+event_name.innerHTML = ''; 
+        
+if (DATA[currentDate]) 
+{
+  for (let i = 0; i < DATA[currentDate].length; i++) 
+  {
+    event_name.innerHTML += DATA[currentDate][i].todo + '<br>'; 
+      const listItems = document.querySelectorAll('li');
+      const texts = Array.from(listItems).map(item => item.textContent.trim());
+      console.log(texts);
+      texts.forEach(text => {
+          console.log(text);
+      });  
+  }
+} 
+    
+else 
+{
+  event_name.innerHTML = "일정 없음";
+}
+console.log(event_name.innerHTML);
+}
+
+prevEl.addEventListener('click', function () {
+isClick = false;
+isRegister = false;
+  today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+removeCalendar();
+buildCalendar();
+resetInsert();
+redrawLi();
+});
+
+nextEl.addEventListener('click', function () {
+  isClick = false;
+  isRegister = false;
+  today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+removeCalendar();
+buildCalendar();
+resetInsert();
+redrawLi();
+});
+
+function defaultState() {
+    isClick = false;
+    isRegister = false;
+    event_name.innerHTML = "No date selected. Please click on a date.";
+}
+
+function updateCalendar() {
+    currentDate = today.format();
+    backend.innerHTML = "ID : " + ID + ", PASSWORD : " + PASSWORD + ", STUDENTID : " + STUDENTID + ", NICKNAME : " + NICKNAME + '<br>'
+    + "NAME : " + NAME + ", 일정 : " + EVENT + ", 참가 일정 : " + P_TEXT_NAME, ", 참가자 이름 : " + P_TEXT;
+    if (DATA[currentDate]) {
+      isRegister = true;
+        event_name.innerHTML = '';
+        DATA[currentDate].forEach((event, index) => {
+            // 각 이벤트의 텍스트를 처리
+            // 백에 쏠 데이터 0
+            const parts = event.todo.split(',');
+            const PARTS = parts;
+
+            parts.forEach((part, partIndex) => {
+                if (index === 0 && partIndex === 0) {
+                    // event_name.innerHTML += `<br>`;
+                }
+
+                // 백에 쏠 데이터 5
+                // Index와 Part를 함께 출력
+                event_name.innerHTML += `Index: ${index + 1}, Part ${partIndex + 1}: ${part.trim()}`; // 원랜 ' 앞에 <br> 이 달려야하긴 함.
+                event_name.innerHTML += '<br>';
+                EVENT = event_name.innerHTML;
+                alert("EVENT : " + EVENT);
+
+            });
+            // 백에 쏠 데이터 4
+            // alert(parts);
+            // alert("index" + index);
+        });
+    } else {
+      isRegister = false;
+        event_name.innerHTML = "No events for today.";
+    }
+
+    // alert(event_name.innerHTML); - 활성화 해야함!!
+
+}
+
+calendarBody.addEventListener('click', function (e) {
+  let target = e.target;
+    let eachDate = document.querySelectorAll('.calendar-body > #weekly > div');
+    isClick = true;
+    isRegister = true;
+    const listItems = document.querySelectorAll('li');
+    const texts = Array.from(listItems).map(item => item.textContent.trim());
+    console.log(texts);
+    texts.forEach((text, index) => {
+        const parts = text.split(',');
+        parts.forEach((part, partIndex) => {
+            if (index === 0 && partIndex === 0) {
+                event_name.innerHTML += `<br>`;
+            }
+
+            event_name.innerHTML += `Index: ${index}, Part ${partIndex}: ${part.trim()}<br>`;
+        });
+    });
+
+    if (!target.textContent.trim()) {
+        alert('선택된 날짜가 유효하지 않습니다.');
+    } else {
+        for (let i = 0; i < eachDate.length; i++) {
+            eachDate[i].classList.remove('active');
+        }
+        target.classList.add('active');
+        today = new Date(today.getFullYear(), today.getMonth(), parseInt(target.textContent.trim(), 10));
+        currentDate = today.format();
+        redrawLi();
+        resetInsert();
+    }
+});
+
+
+
+
+
+inputBtnName.addEventListener('click', function (e) {
+e.preventDefault();
+inputBoxName.style.visibility = "hidden";
+inputBtnName.style.visibility = "hidden";
+NAME = inputBoxName.value;
+alert("NAME : " + NAME);
+// sendPostRequest3();
+loginAndGetToken();
+// fetchUserData();
+// fetchWithToken();
+// getDataAndAlert();
+
+});
+
+
+
+inputBtnID.addEventListener('click', function (e) {
+e.preventDefault();
+// inputBoxName.style.visibility = "hidden";
+// inputBtnName.style.visibility = "hidden";
+ID = inputBoxID.value;
+alert("ID : " + ID);
+});
+
+inputBtnPassword.addEventListener('click', function (e) {
+e.preventDefault();
+// inputBoxName.style.visibility = "hidden";
+// inputBtnName.style.visibility = "hidden";
+PASSWORD = inputBoxPassword.value;
+alert("PASSWORD : " + PASSWORD);
+});
+
+inputBtnStudentID.addEventListener('click', function (e) {
+e.preventDefault();
+// inputBoxName.style.visibility = "hidden";
+// inputBtnName.style.visibility = "hidden";
+STUDENTID = inputBoxStudentID.value;
+alert("STUDENTID : " + STUDENTID);
+});
+
+inputBtnNickName.addEventListener('click', function (e) {
+e.preventDefault();
+// inputBoxName.style.visibility = "hidden";
+// inputBtnName.style.visibility = "hidden";
+NICKNAME = inputBoxNickName.value;
+alert("NICKNAME : " + NICKNAME);
+});
+
+inputBtn.addEventListener('click', function (e) {
+e.preventDefault();
+
+
+if (isPM === 0) {
+  if (isClick) {
+  alert("관리자");
+  if (inputBox.value.trim() === "") 
+  {
+    alert("입력란이 비어 있습니다.");
+  }
+
+  else {
+    e.preventDefault();
+    // 백엔드에 쏠 데이터
+    inputValue = inputBox.value;
+    alert(inputValue);
+    insertTodo(inputValue);
+  }
+  }
+}
+
+else if (isPM === 1) {
+  alert("준회원");
+}
+
+else {
+  alert("회원");
+}
+});
+
+closedBtn.addEventListener('click', function(e){
+showList.style.display = "none";
+bgblack.style.display = "none";
+
+
+});
+
+function insertTodo(text) {
+let todoObj = {
+  todo: text,
+}
+
+if (!DATA[currentDate]) 
+{
+  DATA[currentDate] = [];
+  DATA[currentDate].push(todoObj);
+  
+  
+} 
+
+else 
+{
+  DATA[currentDate].push(todoObj);
+  alert(DATA[currentDate]);
+}
+const liEl = document.createElement('li');
+const spanEl = document.createElement('span');
+const delBtn = document.createElement('button');
+delBtn.innerText = "DEL";
+delBtn.setAttribute('class', 'del-data');
+liEl.setAttribute('id', DATA[currentDate].length);
+spanEl.innerHTML = text;
+liEl.appendChild(spanEl);
+liEl.appendChild(delBtn);
+inputList.appendChild(liEl);
+delBtn.addEventListener('click', delWork);
+liEl.addEventListener('dblclick', showTodo);
+todoObj.id = DATA[currentDate].length;
+localStorage.setItem(currentDate, JSON.stringify(DATA[currentDate]));
+inputBox.value = '';
+}
+
+function redrawLi() {
+let liEl = document.querySelectorAll('LI');
+for (let i = 0; i < liEl.length; i++) {
+  inputList.removeChild(liEl[i]);
+}
+for (let todoList in DATA) {
+  if (todoList === currentDate) {
+    for (let i = 0; i < DATA[todoList].length; i++) {
+      const liEl2 = document.createElement('li');
+      spanEl2 = document.createElement('span');
+      const delBtn2 = document.createElement('button');
+      delBtn2.innerText = "DEL";
+      delBtn2.setAttribute('class', 'del-data');
+      spanEl2.innerHTML = DATA[todoList][i].todo;
+      liEl2.appendChild(spanEl2);
+      liEl2.appendChild(delBtn2);
+      inputList.appendChild(liEl2);
+      liEl2.setAttribute('id', DATA[todoList][i].id);
+      delBtn2.addEventListener('click', delWork);
+      liEl2.addEventListener('dblclick', showTodo);
+    }
+  }
+}
+
+if(currentDate === '2024-9-6') {
+    alert("9월 6일");
+    setDefaultTodosForDate(currentDate);
+  }
+
+  else if(currentDate === '2024-9-13') {
+    alert("9월 13일");
+    setDefaultTodosForDate2(currentDate);
+  }
+
+  else if(currentDate === '2024-9-20') {
+    alert("9월 20일");
+    setDefaultTodosForDate(currentDate);
+  }
+
+  else if(currentDate === '2024-9-27') {
+    alert("9월 27일");
+    setDefaultTodosForDate2(currentDate);
+  }
+}
+
+function resetInsert() {
+let storeObj = localStorage.getItem(currentDate);
+if (storeObj !== null) {
+  let liEl = document.querySelectorAll('LI');
+  
+  for (let i = 0; i < liEl.length; i++)     {
+    inputList.removeChild(liEl[i]);
+  }
+  
+  const parsed = JSON.parse(localStorage.getItem(currentDate));
+  
+  parsed.forEach(function (todo) {
+    if (todo) {
+      let lili = document.createElement('li');
+      let spanspan = document.createElement('span');
+      let deldel = document.createElement('button');
+      deldel.setAttribute('class', 'del-data');
+      deldel.innerText = "DEL";
+      lili.setAttribute('id', todo.id);
+      spanspan.innerHTML = todo.todo;
+      lili.appendChild(spanspan);
+      lili.appendChild(deldel);
+      inputList.appendChild(lili);
+      deldel.addEventListener('click', delWork);
+      lili.addEventListener('dblclick', showTodo);
+    }
+  });
+}
+}
+resetInsert();
+
+function delWork(e) {
+e.preventDefault();
+// 백에 쏠 데이터 1
+let delParentLi = e.target.parentNode;
+const DELDELDEL = delParentLi;
+inputList.removeChild(delParentLi);
+
+let delText = delParentLi.querySelector('span').textContent;
+alert(delText);
+
+alert(delParentLi.innerHTML);
+const cleanToDos = DATA[currentDate].filter(function (todo) {
+  return todo.id !== parseInt(delParentLi.id);
+});
+DATA[currentDate] = cleanToDos;
+localStorage.setItem(currentDate, JSON.stringify(DATA[currentDate]));
+}
+
+
+
+function showTodo(e){
+showList.style.display = "block"; 
+bgblack.style.display = "block"; 
+listText.textContent = e.target.textContent;
+createDate.textContent = currentDate;
+
+
+}
+
+}
+
+var inp = document.querySelector('#userName');
+var inp2 = document.querySelector('#ID');
+var but = document.querySelector('#userButton');
+var namelist = document.querySelector('#nameList');
+
+    function del() {
+  var cla = document.querySelectorAll('.num'); 
+
+  for (var i = 0; i < cla.length; i++) {
+    cla[i].addEventListener('click', function() {
+      // 클릭된 요소의 부모 노드에서 텍스트 내용을 추출 (X를 제외한 부분)
+      // 백에 쏠 데이터 3!!
+      var parentText = this.parentNode.textContent.replace(' X', '');
+      const PARENTTEXT = parentText;
+      alert("클릭된 이름: " + parentText);
+      if (this.parentNode) {
+        this.parentNode.remove();
+      }
+    });
+  }
+}
+
+document.getElementById('userButton').addEventListener('click', function(event) {
+    var inp = document.querySelector('#userName');
+    var inp2 = document.querySelector('#ID');
+    if (isRegister) {
+    if (!inp.value.trim() || !inp2.value.trim()) {
+        event.preventDefault();
+        alert("모든 필드를 채워주세요.");
+    } 
+    else {
+        var p = document.createElement('p');
+        namelist.appendChild(p);
+        // 백에 쏠 데이터 2 - 참가
+        p.textContent = inp.value + ", " + currentDate + ", 신청 일정 인덱스 : " + inp2.value;
+        P_TEXT = p.textContent; //이름, 날짜, 인덱스로 구성 
+        P_TEXT_NAME = inp.value;
+        alert("P_TEXT: " + P_TEXT);
+        alert(P_TEXT_NAME);
+        var span = document.createElement('span');
+        p.appendChild(span);
+        span.textContent = ' X';
+        span.setAttribute('class', 'num');
+        inp.value = '';
+        inp2.value = '';
+        namelist.insertBefore(p, namelist.childNodes[0]);
+        sendPostRequest2();
+    }
+
+    }
+    del();
+});
+
+but.addEventListener('click', function(e) 
+{
+  e.preventDefault();
+
+});
+
+// 보내기 설명
+/*
+// 보내기 ()
+// 사용 링크 : https://fansor.tistory.com/13
+fetch(url, options)
+.then((response) => console.log("response:", response))
+.catch((error) => console.log("error:", error));
+*/
+
+// 가져오기
+/*
+// 가져오기 ()
+// 사용 링크
+// 1. https://jsonplaceholder.typicode.com/
+// 2. https://jsonplaceholder.typicode.com/posts
+// 3. https://myeongsu0257.tistory.com/123
+const getData = async () => {
+  try {
+      const response = await fetch("khyu2.kro.kr:49000"); 
+      // https://jsonplaceholder123.typicode.com/posts로 쓰면 catch문에서 걸림
+      const data = await response.json();
+      console.log(data);
+  } catch (error) {
+      console.log(`error : ${error}`);
+  }
+};
+
+getData();
+*/
+
+// 가져오기 2 - X
+/*
+function fetchUserData() {
+  alert("실행1");
+  fetch("http://khyu2.kro.kr:49000/member/")
+    .then((response) => {
+      console.log(response); // 응답 상태 코드 확인
+      if (!response.ok) {
+        throw new Error('Network response was not ok. Status: ' + response.status);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data); // 응답 데이터 출력
+      alert(JSON.stringify(data));
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error); // 오류 로그 출력
+      alert("Error: " + error.message);
+    });
+}
+
+// 5초마다 fetchUserData 함수를 호출
+// fetchUserData(); 이건 뭐하는거야?
+*/
+
+// GET 요청
+/*
+
+*/
+
+// PUT 요청
+/*
+//PUT 요청
+fetch("localhost:3000/api/user", {
+method: "PUT",
+headers: {
+  "Content-Type": "application/json",
+},
+body: JSON.stringify({
+  loginId: "id",
+  password: "1234",
+}),
+})
+.then((response) => response.json())
+.then((data) => console.log(data));
+*/
+
+// DELETE 1
+/*
+//DELETE 요청
+fetch("khyu2.kro.kr:49000", {
+method: "DELETE",
+})
+.then((response) => response.json())
+.then((data) => console.log(data));
+*/
+
+// DELETE 2
+/*
+// api 구현에 따라 이 코드로 구현될 수 있을 것으로 사료될 줄 알았으나 http 스펙상 delete method에 body는 있으면 안되며 링크로 삭제해야한다고 함.
+fetch("http://khyu2.kro.kr:49000", {
+  method: "DELETE",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    name: P_TEXT_NAME, // 참가 이름
+    errorCode: 0,     // 에러코드
+    message: P_TEXT   // 참가 메시지
+  }),
+})
+.then((response) => response.json())
+.then((data) => console.log(data))
+.catch((error) => console.error("Error:", error));
+*/
+
+// 로그아웃
+/*
+function sendPostRequest4() {
+    // 참가신청
+  alert("실행_로그아웃");
+  alert("email : " + ID
+   + ", PASSWORD : " + PASSWORD 
+   + ", USERNAME : " + NAME
+   + ", STUDENTID: " + STUDENTID 
+   + ", NICKNAME : " + NICKNAME);
+  fetch("http://khyu2.kro.kr:49000/member/logout", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(
+      
+      {
+        name: "gkstjd010508@gmail.com",
+        errorCode:0,
+        message: "aaaaaaaaaaaa"
+      }
+      
+      // {
+        // name: NAME,
+        // message: ID
+      // }
+      
+      ),
+  })
+  
+  .then((response) => response.json()) // 서버 응답을 JSON으로 변환
+    .then((data) => {
+      if (data) { // 응답 데이터가 있을 경우
+        alert("성공: " + JSON.stringify(data)); // 데이터를 문자열로 변환 후 출력
+        if (data && data.token) { // 서버 응답에 토큰이 있으면
+        alert("토큰을 성공적으로 받았습니다: " + data.token); // 토큰을 알림으로 출력
+        // 여기서 받은 토큰을 저장할 수 있습니다 (예: localStorage)
+        localStorage.setItem('authToken', data.token);
+        } 
+        else 
+        {
+        alert("성공했지만 토큰이 없습니다. 응답 데이터: " + JSON.stringify(data));
+        }
+      } else { // 응답 데이터가 없을 경우
+        alert("성공: 응답 데이터가 없습니다."); // '응답 데이터가 없음' 메시지를 출력
+      }
+    })
+    .catch((error) => { // 오류 발생 시
+      console.error("Fetch 작업 중 오류 발생:", error); // 콘솔에 오류 로그 출력
+      alert("데이터 전송 중 오류가 발생했습니다. 다시 시도해 주세요."); // 사용자에게 오류 알림
+    });
+}
+// 5초마다 sendPostRequest 함수를 호출
+// setInterval(sendPostRequest3, 5000);
+*/
+
+// 토큰을 통한 프로필 정보 요청
+/*
+async function getUserProfile() {
+    try {
+        const token = localStorage.getItem('authToken');
+
+// 토큰이 없으면 권한이 없다는 메시지를 출력하고 종료
+        if (!token) {
+            alert("인증 토큰이 없습니다. 먼저 로그인 해주세요.");
+            return;
+        }
+
+// API 호출 (Authorization 헤더에 토큰 포함)
+        const response = await fetch("http://khyu2.kro.kr:49000/member/", {
+            method: "GET",
+            headers: {
+                "Authorization": Bearer ${token},
+                "Content-Type": "application/json"
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(프로필 조회 실패! 상태 코드: ${response.status});
+        }
+
+
+
+        // 응답 본문이 비어 있는지 확인
+//        const text = await response.text();
+//        if (text) {
+//            const data = JSON.parse(text);
+//            if (data.length > 0) {
+//                alert(JSON.stringify(data));
+//            } else {
+//                alert("No data received.");
+//            }
+//        } else {
+//            alert("No content in response.");
+//        }
+//    } catch (error) {
+        // 오류 메시지를 alert로 표시
+//        console.error(Error: ${error.message});
+//        alert(Failed to load data. Reason: ${error.message});
+//    }
+
+
+
+
+
+// 응답 데이터를 JSON 형식으로 변환
+//        const data = await response.json();
+//        alert("서버 응답 데이터:", data); // 응답 데이터를 확인하여 어떤 형식인지 파악
+
+        // 서버로부터 받은 토큰을 저장
+//        if (data.token) {
+//            localStorage.setItem('authToken', data.token);  // 토큰을 localStorage에 저장
+//            alert("로그인 성공! 토큰이 저장되었습니다.");
+//        } else {
+//            alert("로그인 성공했지만 토큰이 없습니다.");
+//        }
+//    } catch (error) {
+//        console.error(`로그인 중 오류 발생: ${error.message}`);
+//        alert(`로그인 실패: ${error.message}`);
+//    }
+
+
+
+
+
+const data = await response.json();
+        alert("회원 프로필 정보: " + JSON.stringify(data));
+    } catch (error) {
+        console.error("프로필 조회 오류:", error);
+        alert(프로필 조회 실패: ${error.message});
+    }
+}
+*/
+
+
+
+
+let textData2;
+
+async function loginAndGetToken() {
+    // 로그인
+    try {
+        const loginData = {
+            email: "gkstjd333333@gmail.com",  // 가입 시 사용한 이메일
+            password: "dasdafgadg8*"         // 가입 시 사용한 비밀번호
+        };
+
+        const response = await fetch("http://khyu2.kro.kr:49000/member/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(loginData),
+        });
+
+        // 응답 상태 코드 확인
+        alert(`응답 상태 코드: ${response.status}`);
+        
+        /*
+        // 응답 헤더 로그 출력
+        response.headers.forEach((value, key) => {
+            console.log(`${key}: ${value}`);
+            alert(`${key}: ${value}`);
+        });
+        */
+
+        // alert(response.body);
+
+        if (!response.ok) {
+            throw new Error(`로그인 실패! 상태 코드: ${response.status} - ${response.statusText}`);
+        }
+
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.indexOf("application/json") !== -1) {
+            const data = await response.json();
+            alert("서버 응답 데이터(JSON): " + JSON.stringify(data));
+
+            if (data.token) {
+                localStorage.setItem('authToken', data.token);
+                alert("로그인 성공! 토큰이 저장되었습니다.");
+            } else {
+                alert("로그인 성공했지만 토큰이 없습니다. 응답 데이터를 확인하세요.");
+            }
+        } else {
+            const textData = await response.text();
+            alert("서버 응답 데이터(텍스트):", textData);
+            alert(`예상치 못한 응답 형식: ${textData}`);
+            document.cookie = "authorization=Bearer " + textData;
+            alert("쿠키 저장됨: " + document.cookie);
+        }
+
+    } catch (error) {
+        alert(`로그인 중 오류 발생: ${error.message}`);
+        alert(`로그인 실패: ${error.message}`);
+    }
+}
+
+function sendPostRequest() {
+    // 보고 데이터 작성한건 example value 기준
+    // calendar - api 세팅!!, 캘린더 내용 다 조사
+    // 민근 (전달한거 맞나 확인), 준형 (캘린더 로그인에서 필요한거), 
+    // 수민(다시 확인), 성열(권한 및 민근이형한테 들은거 전달)
+  
+  alert("실행_캘린더_일정 업데이트");
+  if (!textData) {
+        alert("토큰이 없습니다. 로그인 후 다시 시도하세요.");
+        return;
+  }
+
+  fetch("http://khyu2.kro.kr:49000/calendar/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${textData}` // 이거 문제 없는거 맞아?
+    },
+    body: JSON.stringify({
+      /*
+      // 코드 자체에 오류가 없다는 것은 준형이 형에게 확인 받았으며, 현재 로그인 토큰 이슈로 인한 데이터 테스트를 하지 못한 문제는 있음
+      // loginId: "id",
+      // password: "1234",
+      p_text: NAME, // name = 참가
+      errorCode : 0, // 따옴포 다는지 안다는진 몰루
+      message: EVENT //inputValue + inp2.value - 원래 이거였는데 왜그랬지 / message = 추가 (일정 업데이트로 반영)
+      // del: DELDELDEL, // 삭제 (삭제한거만 따로 보고 싶을 때)
+      // parenttext: PARENTTEXT, // 참가 취소
+      */
+
+
+
+
+
+      title: "stringfff",
+      detail: "stringaaa",
+      category: "MEETING",
+      startDate: "2024-09-07T14:55:44.115Z",
+      endDate: "2024-09-07T14:55:44.115Z",
+      maxParticipant: 0
+    }),
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    alert("Success:", data);
+  })
+  .catch((error) => {
+    alert("Error occurred during the fetch operation:", error);
+    alert("데이터 전송 중 오류가 발생했습니다. 다시 시도해 주세요.");
+  });
+}
+
+// 5초마다 sendPostRequest 함수를 호출
+// setInterval(sendPostRequest, 0.01);
+
+function sendPostRequest2() {
+    // 참가신청
+  alert("실행_참가신청");
+  fetch("http://khyu2.kro.kr:49000/calendar/1/join", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json", 
+      "Authorization": `Bearer ${textData}` // 이거 문제 없는거 맞아?
+      // 대문자래 반성합시다..! 
+      // jwt 보낼 때 쿠키 넣을 때 value에 
+      // 꽂아서 전송하세요가 이 헤더 말하는거 맞죠? -> 감사합니다. 행님
+    },
+    body: JSON.stringify({
+        name: P_TEXT_NAME, // 참가 이름
+        errorCode:0, // 에러코드
+        message:P_TEXT // 참가 메시지
+    }),
+  })
+  
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error occurred during the fetch operation:", error);
+    alert("데이터 전송 중 오류가 발생했습니다. 다시 시도해 주세요.");
+  });
+}
+// 5초마다 sendPostRequest 함수를 호출
+// setInterval(sendPostRequest2, 0.01);
+
+function sendPostRequest3() {
+  // 회원가입
+  alert("실행_로그인");
+  alert("email : " + ID
+   + ", PASSWORD : " + PASSWORD 
+   + ", USERNAME : " + NAME
+   + ", STUDENTID: " + STUDENTID 
+   + ", NICKNAME : " + NICKNAME);
+  fetch("http://khyu2.kro.kr:49000/member/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      // "Authorization": `Bearer ${textData}`
+    },
+    body: JSON.stringify(
+      
+      {
+        // DB 띄우는법
+        email: "gkstjd333333@gmail.com",
+        password: "dasdafgadg8*",
+        username: "임의_username",
+        studentId: "임의_studentId",
+        // intro: "회원",
+        // nickname: "studentId"
+      }
+      ),
+  })
+  
+  .then((response) => response.json()) // 서버 응답을 JSON으로 변환
+    .then((data) => {
+      if (data) { // 응답 데이터가 있을 경우
+        alert("성공: " + JSON.stringify(data)); // 데이터를 문자열로 변환 후 출력
+        if (data && data.token) { // 서버 응답에 토큰이 있으면
+        alert("토큰을 성공적으로 받았습니다: " + data.token); // 토큰을 알림으로 출력
+        // 여기서 받은 토큰을 저장할 수 있습니다 (예: localStorage)
+        localStorage.setItem('authToken', data.token);
+        } 
+        else 
+        {
+        alert("성공했지만 토큰이 없습니다. 응답 데이터: " + JSON.stringify(data));
+        }
+      } else { // 응답 데이터가 없을 경우
+        alert("성공: 응답 데이터가 없습니다."); // '응답 데이터가 없음' 메시지를 출력
+      }
+    })
+    .catch((error) => { // 오류 발생 시
+      console.error("Fetch 작업 중 오류 발생:", error); // 콘솔에 오류 로그 출력
+      alert("데이터 전송 중 오류가 발생했습니다. 다시 시도해 주세요."); // 사용자에게 오류 알림
+    });
+}
+// 5초마다 sendPostRequest 함수를 호출
+// setInterval(sendPostRequest3, 5000);
+
+
+
+// 토큰 전달
+
+function fetchWithToken() {
+  const token = "calendar"; // 전달할 토큰 - 실제 서버에서 발급된 유효한 토큰을 넣어야함
+  const url = "http://khyu2.kro.kr:49000/member/"; // 요청할 API URL
+
+  fetch(url, {
+    method: "GET", // 또는 "POST", "PUT", "DELETE" 등 요청 방식에 맞게 변경
+    headers: {
+      "Content-Type": "application/json", // JSON 형식의 데이터를 보내는 경우
+      "Authorization": `Bearer ${token}` // 토큰을 헤더에 추가
+    }
+  })
+  .then((response) => response.json())
+  .then((data) => alert("Success:", data))
+  .catch((error) => alert("Error:", error));
+}
+
+// 가져오기 1 (마지막 확인) - GET 요청
+function fetchUserData() {
+  alert("실행1");
+  fetch("http://khyu2.kro.kr:49000/member/") // http://khyu2.kro.kr:49000/calendar/1/join 이걸로 하면 input 버튼 클릭이 안됨..
+    .then((response) => response.json())
+    .then((data) => alert(data))
+    .catch((error) => alert("Error:", error));
+}
+</script>
+</html>
